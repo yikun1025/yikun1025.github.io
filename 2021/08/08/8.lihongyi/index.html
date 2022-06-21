@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>8. what does the error from? | 锅巴要写编译器</title><meta name="keywords" content="深度学习,机器学习,李宏毅"><meta name="author" content="锅巴"><meta name="copyright" content="锅巴"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="where does the error from?  error到底是因为bias还是因为variance呢 Estimator对于我们要找的关于pokemon的cp值的预测，这个function我们并不知道真实值，对于我们的模型与真实的偏离就是类似于靶子上的偏离。   Bias and Variance of Estimator假设我们做实验期望的值为$\mu$，那么每次实验后偏差的值就是$m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="8. what does the error from?">
+<meta property="og:url" content="http://example.com/2021/08/08/8.lihongyi/index.html">
+<meta property="og:site_name" content="锅巴要写编译器">
+<meta property="og:description" content="where does the error from?  error到底是因为bias还是因为variance呢 Estimator对于我们要找的关于pokemon的cp值的预测，这个function我们并不知道真实值，对于我们的模型与真实的偏离就是类似于靶子上的偏离。   Bias and Variance of Estimator假设我们做实验期望的值为$\mu$，那么每次实验后偏差的值就是$m">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/bg/lihongyi10.png">
+<meta property="article:published_time" content="2021-08-08T02:27:55.000Z">
+<meta property="article:modified_time" content="2022-06-20T09:52:28.000Z">
+<meta property="article:author" content="锅巴">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="李宏毅">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/bg/lihongyi10.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/08/08/8.lihongyi/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '8. what does the error from?',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-20 17:52:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/author_guoba.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/bg/lihongyi10.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">锅巴要写编译器</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">8. what does the error from?</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-08T02:27:55.000Z" title="发表于 2021-08-08 10:27:55">2021-08-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-06-20T09:52:28.000Z" title="更新于 2022-06-20 17:52:28">2022-06-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="8. what does the error from?"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="where-does-the-error-from"><a href="#where-does-the-error-from" class="headerlink" title="where does the error from?"></a>where does the error from?</h4><img src="8.lihongyi/image-20210808095211971.png" alt="" style="zoom:67%;" />
+
+<p>error到底是因为bias还是因为variance呢</p>
+<h5 id="Estimator"><a href="#Estimator" class="headerlink" title="Estimator"></a>Estimator</h5><p>对于我们要找的关于pokemon的cp值的预测，这个function我们并不知道真实值，对于我们的模型与真实的偏离就是类似于靶子上的偏离。</p>
+<img src="8.lihongyi/image-20210808101524344.png" alt="" style="zoom:33%;" />
+
+<h4 id="Bias-and-Variance-of-Estimator"><a href="#Bias-and-Variance-of-Estimator" class="headerlink" title="Bias and Variance of Estimator"></a>Bias and Variance of Estimator</h4><p>假设我们做实验期望的值为$\mu$，那么每次实验后偏差的值就是$m_{n}$，那么将所有实验后获得的偏差0值累加后除以N就应该是m的值。</p>
+<p>那么偏差散多开就是由variance决定的。</p>
+<p>当数量N比较多的情况下，散布会比较集中。而数量N比较小的时候，散布会比较开。</p>
+<img src="8.lihongyi/image-20210808125716987.png" alt="" style="zoom:33%;" />
+
+<p>比较的公式如图所示，注意比较用的是biased estimator，而$s^2$普遍小于$\sigma^2$</p>
+<h5 id="Low-High-variance-and-bias"><a href="#Low-High-variance-and-bias" class="headerlink" title="Low High variance and bias"></a>Low High variance and bias</h5><img src="8.lihongyi/image-20210808130017911.png" alt="" style="zoom:33%;" />
+
+<p>靶子不偏移，也就是靶子能够距离红中心位置越近越好，这就代表的是bias。</p>
+<p>一连串的靶子的点分布集中，这就代表的是variance，也就是分布要低。</p>
+<h4 id="Parallel-Universes"><a href="#Parallel-Universes" class="headerlink" title="Parallel Universes"></a>Parallel Universes</h4><p>假设我们现在处于不同平行宇宙，每个宇宙我们都抓10只pokemon做预测，因为每个宇宙中抓到的pokemon的input都不同，导致每个平行宇宙所获得的关于$f^*$的预测都不同。</p>
+<p><img src="/8.lihongyi/image-20210808130437722.png"></p>
+<p>可明显看到，在宇宙123和宇宙345中得到的函数是不同的，那么如果是100个宇宙那么function就变化的更加多，如果画成图的话会是下图1</p>
+<p><img src="/8.lihongyi/image-20210808131354559.png"></p>
+<p>这只是线性回归，最简单的一元方程，因此偏移度还是一定范围，但当我们把模型设定的越复杂，模型的variance很明显就越大，导致每个函数看上去极度不同，非常不规整。</p>
+<p><img src="/8.lihongyi/image-20210808132132822.png"></p>
+<p>假设我们考虑最简单的model，就是f(x) &#x3D; c函数，可以发现无论在任何宇宙都会不变，它的variance为0，因为不受input影响。这可以推导出为什么模型越复杂variance液大</p>
+<h5 id="how-about-bias"><a href="#how-about-bias" class="headerlink" title="how about bias"></a>how about bias</h5><p><img src="/8.lihongyi/image-20210808133932094.png"></p>
+<p>如果我们做5000次实验，也就是在5000个平行宇宙中找$f^*$，并且对所有找到的函数做平均画线，可以发现随着模型的复杂，平均下来的$f^*$是越来越接近真实的函数的。</p>
+<p>也就是说随着模型的复杂，bias会变小，虽然variance很大。</p>
+<p><img src="/8.lihongyi/image-20210808134209538.png"></p>
+<h5 id="Bias-vs-Variance"><a href="#Bias-vs-Variance" class="headerlink" title="Bias vs Variance"></a>Bias vs Variance</h5><p><img src="/8.lihongyi/image-20210808134310295.png"></p>
+<p>如果我们做图，可以发现，随着模型系数增加，也就是模型越来越复杂后，error from bias降低，error from variance增加，error observed 先降低后增加。</p>
+<h4 id="what-to-do-with-leage-bias"><a href="#what-to-do-with-leage-bias" class="headerlink" title="what to do with leage bias?"></a>what to do with leage bias?</h4><p>如何判断：</p>
+<ul>
+<li>因此如果模型在训练集的bias很大的话，那么就说明具有很大的bias</li>
+<li>如果模型在训练集是ok的，但是在测试集表现不好，那就说明有很大的variance</li>
+</ul>
+<p>对于bias问题，主要是重新设计模型</p>
+<ul>
+<li>add more features as input</li>
+<li>a more complex model</li>
+</ul>
+<h4 id="what-to-do-with-large-variance"><a href="#what-to-do-with-large-variance" class="headerlink" title="what to do with large variance?"></a>what to do with large variance?</h4><ul>
+<li>more data</li>
+</ul>
+<p>一种方式就是增加更多数据，比如收集数据，比如造假数据，比如对于不同数据进行一定程度的翻转来获得更多的数据</p>
+<ul>
+<li>regularization：通过正则化的方式强制让曲线变平滑</li>
+</ul>
+<p>这节课真的非常有意思，hhh李宏毅老师真的幽默风趣又充满激情。</p>
+<p><img src="/8.lihongyi/image-20210808135414687.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">锅巴</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/08/8.lihongyi/">http://example.com/2021/08/08/8.lihongyi/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">锅巴要写编译器</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="post-meta__tags" href="/tags/%E6%9D%8E%E5%AE%8F%E6%AF%85/">李宏毅</a></div><div class="post_share"><div class="social-share" data-image="/img/bg/lihongyi10.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/08/9.lihongyi/"><img class="prev-cover" src="/img/bg/lihongyi8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">9. Gradient Descent</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/07/7.%E5%9B%9E%E5%BD%92%E6%A1%88%E4%BE%8Bpokemon/"><img class="next-cover" src="/img/bg/lihongyi9.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">7.回归案例pokemon</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/07/14/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8A)/" title="1.深度学习机器学习基本概念(上)"><img class="cover" src="/img/bg/1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-14</div><div class="title">1.深度学习机器学习基本概念(上)</div></div></a></div><div><a href="/2021/07/18/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8B)/" title="1.深度学习机器学习基本概念(下)"><img class="cover" src="/img/bg/ai1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-18</div><div class="title">1.深度学习机器学习基本概念(下)</div></div></a></div><div><a href="/2021/08/08/10.%20Classification/" title="10.Classification"><img class="cover" src="/img/bg/lihongyi11.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-08</div><div class="title">10.Classification</div></div></a></div><div><a href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img class="cover" src="/img/bg/lihongyi11.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-12</div><div class="title">实现宝可梦分类以及对宝可梦数据分析</div></div></a></div><div><a href="/2021/07/25/2.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AE%80%E4%BB%8B/" title="2.深度学习简介"><img class="cover" src="/img/bg/ai2.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-25</div><div class="title">2.深度学习简介</div></div></a></div><div><a href="/2021/07/31/3.%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/" title="3. 反向传播"><img class="cover" src="/img/bg/ai3.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-31</div><div class="title">3. 反向传播</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/author_guoba.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">锅巴</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/yikun1025" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jianfang1025@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">技术成神之路</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#where-does-the-error-from"><span class="toc-number">1.</span> <span class="toc-text">where does the error from?</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Estimator"><span class="toc-number">1.1.</span> <span class="toc-text">Estimator</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Bias-and-Variance-of-Estimator"><span class="toc-number">2.</span> <span class="toc-text">Bias and Variance of Estimator</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Low-High-variance-and-bias"><span class="toc-number">2.1.</span> <span class="toc-text">Low High variance and bias</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Parallel-Universes"><span class="toc-number">3.</span> <span class="toc-text">Parallel Universes</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#how-about-bias"><span class="toc-number">3.1.</span> <span class="toc-text">how about bias</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Bias-vs-Variance"><span class="toc-number">3.2.</span> <span class="toc-text">Bias vs Variance</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#what-to-do-with-leage-bias"><span class="toc-number">4.</span> <span class="toc-text">what to do with leage bias?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#what-to-do-with-large-variance"><span class="toc-number">5.</span> <span class="toc-text">what to do with large variance?</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏"><img src="/img/bg/dadanmu.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js实现的打弹幕游戏"/></a><div class="content"><a class="title" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏">js实现的打弹幕游戏</a><time datetime="2022-06-21T06:38:38.000Z" title="发表于 2022-06-21 14:38:38">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题">无题</a><time datetime="2022-06-21T06:34:36.312Z" title="发表于 2022-06-21 14:34:36">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏"><img src="/img/bg/flappybird.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js的flapp bird游戏"/></a><div class="content"><a class="title" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏">js的flapp bird游戏</a><time datetime="2022-06-20T07:56:00.000Z" title="发表于 2022-06-20 15:56:00">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img src="/img/bg/lihongyi11.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现宝可梦分类以及对宝可梦数据分析"/></a><div class="content"><a class="title" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析">实现宝可梦分类以及对宝可梦数据分析</a><time datetime="2021-08-12T06:05:34.000Z" title="发表于 2021-08-12 14:05:34">2021-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现"><img src="/img/bg/cat.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.锅巴开始做游戏之打砖块实现"/></a><div class="content"><a class="title" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现">1.锅巴开始做游戏之打砖块实现</a><time datetime="2021-08-09T06:05:34.000Z" title="发表于 2021-08-09 14:05:34">2021-08-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 锅巴</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

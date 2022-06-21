@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>锅巴要写编译器</title><meta name="author" content="锅巴"><meta name="copyright" content="锅巴"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="锅巴要写编译器">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="锅巴要写编译器">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/author_guoba.png">
+<meta property="article:author" content="锅巴">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/author_guoba.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '锅巴要写编译器',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-06-21 16:34:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/author_guoba.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://w.wallhaven.cc/full/72/wallhaven-721k2y.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">锅巴要写编译器</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">锅巴要写编译器</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/yikun1025" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jianfang1025@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/05/ocr%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB%E8%AE%AD%E7%BB%83%E6%A3%80%E6%B5%8B/" title="ocr表格识别训练检测"><img class="post_bg" src="/img/bg/ocr2.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ocr表格识别训练检测"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/05/ocr%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB%E8%AE%AD%E7%BB%83%E6%A3%80%E6%B5%8B/" title="ocr表格识别训练检测">ocr表格识别训练检测</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-05T10:56:00.000Z" title="发表于 2021-08-05 18:56:00">2021-08-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%BB%E5%8A%A1/">任务</a></span></div><div class="content">目标检测效果经过一段时间的训练，精度达到了百分之76.5，还是无法达到精准的表格预测的效果，于是我尝试下载表格数据集在此基础上进行预测。目前预测效果还是不够好。
+
+
+文字识别模型效果用的是cnnr模型，效果提升不大
+表格检测模型我下载了onedrive上的testbank的表格数据集。目前testbank数据集非常大，解压后有25g的大小以及Py这里的表格检测用的是testbank + publaynet数据集，加载一起有50g的数据集，整合为infer的推理模型后，效果还可以。我觉得目前做的效果不可能比paddle更好了
+
+
+表格基本样式训练模型为ppyolov2_r50vd_dcn_365e_tableBank_word，
+
+比起传统的Opencv处理方式会好很多
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/07/30/n%E5%8D%A1%E9%A9%B1%E5%8A%A8+cuda+cudnn%E9%81%BF%E5%9D%91/" title="n卡驱动+cuda+cudnn避坑详尽过程"><img class="post_bg" src="/img/bg/cuda.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="n卡驱动+cuda+cudnn避坑详尽过程"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/30/n%E5%8D%A1%E9%A9%B1%E5%8A%A8+cuda+cudnn%E9%81%BF%E5%9D%91/" title="n卡驱动+cuda+cudnn避坑详尽过程">n卡驱动+cuda+cudnn避坑详尽过程</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-30T09:15:09.000Z" title="发表于 2021-07-30 17:15:09">2021-07-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/linux/">linux</a></span></div><div class="content">ubuntu20.04ok第一次安装的时候使用的是ubuntu18.04，后来发现还是会报错，索性用20.04，毕竟20.04屏幕看上去舒服漂亮多了。cuda还是装10.1,cudnn7.6.5
+显卡驱动安装我之前用的都是
+1sudo apt-get install nvidia-driver-418
+
+之后会安装成功
+还有一种方式是用touchpad的附加驱动安装
+
+
+这里选择应用修改即可
+但是使用nvidia-smi会显示
+1NVIDIA-SMI has failed because it couldn&#x27;t communicate with the NVIDIA driver
+
+这里的报错解决是通过
+12ll /usr/src/sudo apt-get install dkms
+
+
+看到驱动是418.211
+因此使用
+1sudo dkms install -m nvidia -v 418.211.00
+
+装完之后重启，我还改了bios
+以及禁了nouveau驱动
+通过
+1sudo gedit /etc/modprobe.d/blacklist-nouveau.conf
+
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/07/23/%E5%8E%BB%E9%99%A4%E5%9B%BE%E7%89%87%E5%8D%B0%E7%AB%A0%E4%BB%A5%E5%8F%8Apaddle/" title="去除图片印章尝试"><img class="post_bg" src="/img/bg/ocr3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="去除图片印章尝试"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/23/%E5%8E%BB%E9%99%A4%E5%9B%BE%E7%89%87%E5%8D%B0%E7%AB%A0%E4%BB%A5%E5%8F%8Apaddle/" title="去除图片印章尝试">去除图片印章尝试</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-23T07:56:00.000Z" title="发表于 2021-07-23 15:56:00">2021-07-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%BB%E5%8A%A1/">任务</a></span></div><div class="content">关于印章去除的尝试对于红色印章，去除方式是比较简单的。
+网上能够搜索到的方式基本都是基于红色通道的去除，还是通过直方图找到最佳阙值threshold来二值化
+
+先对rgb不同通道来绘图，可以发现不同通道对于红色的敏感度不同
+绘图红色通道的直方图
+找出红色值的阙值范围，可以去除图片的印章，去除效果如下：
+
+基于google识别的图形处理再处理完发票后，我通过安装了pytesseractOCR进行了文字识别。
+并且使用opencv的box方法对每张图的小格进行了绘制，效果如下：
+
+目前文字的处理效果还不够好，识别出的文字如下
+12345678910111213141516171819202122232425262728293031发票代码: 012001900211发村号码: 25484924日期: 2019年12月11日支 验 码: 05988 47634 16531 55207机器编号: 499099606293购 |名     称: 个人报销                           | 0301226+&lt;42+01515108457&lt;-4/买 | 纳税人识别号 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现"><img class="post_bg" src="/img/bg/cat.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.锅巴开始做游戏之打砖块实现"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现">1.锅巴开始做游戏之打砖块实现</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-09T06:05:34.000Z" title="发表于 2021-08-09 14:05:34">2021-08-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F/">锅巴做游戏</a></span></div><div class="content">前言
+一直很想做游戏很久了，决定开始做一些小项目。本项目基于js编写，需要的函数参考webapi文档，考虑之后改写成其他版本
+
+从读取图片开始想画图先写一个读图函数，实现最基本的读取图片功能。
+12345var readImage = function(imgpath)&#123;  var img = new Image()  img.src = imgpath  return img&#125;
+
+如何画图参考官方文档
+123456789101112131415161718192021222324const canvas = document.getElementById(&#x27;canvas&#x27;);const ctx = canvas.getContext(&#x27;2d&#x27;);##通过选择器选择画布const image = new Image(60, 45); // 文档设定了图形的sizeimage.onload = drawImageActualSize; // 图片载入成功后画图// Load an image of intrinsic size  ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏"><img class="post_bg" src="/img/bg/dadanmu.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js实现的打弹幕游戏"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏">js实现的打弹幕游戏</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-06-21T06:38:38.000Z" title="发表于 2022-06-21 14:38:38">2022-06-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F/">锅巴做游戏</a></span></div><div class="content">js游戏开发有场景变换，子弹碰撞计算，分数计算等功能
+人物自己找的东方project的人物，boss是通过random函数随机选择boss库，并随机生成boss的所在位置
+操作wsad移动，按j发射子弹
+
+游戏链接
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏"><img class="post_bg" src="/img/bg/flappybird.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js的flapp bird游戏"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏">js的flapp bird游戏</a><div class="article-meta-wrap"><span class="article-meta"><i class="fas fa-thumbtack sticky"></i><span class="sticky">置顶</span><span class="article-meta-separator">|</span></span><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-06-20T07:56:00.000Z" title="发表于 2022-06-20 15:56:00">2022-06-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a></span></div><div class="content">js游戏开发使用canvas绘制图，动画采用的方式是逐帧读取角色sprites图
+重力重力加速度是根据地球重力加速度做的，公式如下
+12vy += 9.8y += vy
+
+碰撞此处碰撞是自己写得函数，方式是判断两个图形是否相交，若相交则有碰撞
+剩余需要开发的小鸟经过管道后分数+1，以及分数对应的图片替换功能
+游戏链接
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题"><img class="post_bg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题">无题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-06-21T06:34:36.312Z" title="发表于 2022-06-21 14:34:36">2022-06-21</time></span></div><div class="content">
+title: 仲夏夜之梦date: 202-01-18 11:25:58categories:
+
+迪仔tags:
+迪仔
+话剧
+仲夏夜之梦password: xugudragonabstract: 迪仔宝宝可见，隐藏隐藏message:  只有迪仔宝宝才能看的哟，请输入密码top_img: &#x2F;img&#x2F;bg&#x2F;dizai4.jpgcover: &#x2F;img&#x2F;bg&#x2F;dizai4.jpg
+
+今天和迪仔宝宝一起看了雷曼三兄弟，上周话剧看了仲夏夜之梦，都是在中间剧场看的。
+不得不感叹莎翁的笔力以及剧情张力，即使1000年后仍然吸引，仲夏夜之梦的台词并没有改变，和原著本身是一模一样的，只是表现上会更符合现代的审美偏好。
+迪仔很贴心的为我准备了晕车药，我为迪仔做了凉面早餐，还准备了小零食。在看话剧的时候，我俩依偎着坐在一起，特别舒服，时不时偷亲一下。
+我一直觉得几千年前的人和现代的人其实没什么太大区别，在我读理想国的时候就感觉到了。智慧上，情感上，需求上都和现代人相差无几，只是时代的差别，文化积累，亦或是知识积累的差别。古代人只是不了解一些现代基 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img class="post_bg" src="/img/bg/lihongyi11.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现宝可梦分类以及对宝可梦数据分析"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析">实现宝可梦分类以及对宝可梦数据分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-12T06:05:34.000Z" title="发表于 2021-08-12 14:05:34">2021-08-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">前言李宏毅老师的宝可梦分类挺有意思的，所以我想尝试一下走这方面的分类，因为查看了一下网上并没有源代码，那就自己写试试吧,，数据集来源于kaggle。
+分析数据首先我们可以看一下我们的数据
+
+
+
+
+abilities
+against_bug
+against_dark
+against_dragon
+against_electric
+against_fairy
+against_fight
+against_fire
+against_flying
+against_ghost
+…
+percentage_male
+pokedex_number
+sp_attack
+sp_defense
+speed
+type1
+type2
+weight_kg
+generation
+is_legendary
+
+
+
+0
+[‘Overgrow’, ‘Chlorophyll’]
+1.0
+1.0
+1.0
+0.5
+0.5
+0.5
+2.0
+2.0
+1.0
+…
+88.1
+1
+65
+65
+45
+grass
+poison
+6.9
+1
+0
+
+
+1
+[‘Overgrow’, ‘Chlorophyll’]
+1.0
+1.0
+1.0
+0.5
+0.5 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/08/10.%20Classification/" title="10.Classification"><img class="post_bg" src="/img/bg/lihongyi11.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="10.Classification"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/08/10.%20Classification/" title="10.Classification">10.Classification</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-08T06:05:34.000Z" title="发表于 2021-08-08 14:05:34">2021-08-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">Classification Example 
+关于分类问题，假设输入是金字图片，那么分类就是这个字属于哪个字。
+输入是关于个人金融相关信息，输出就是同意贷款or拒绝贷款
+假设输入是医疗诊断，目前的症状，输出就是分类属于哪种疾病
+Example Application对于宝可梦的问题，假设我们的input输入是皮卡丘，分类是电，input杰尼龟，输出是水，input是妙蛙种子，输出是草
+
+但是我们如何将pokemon，也就是将这个input数值化呢？pokemon会有七个数值，这七个数值可以组成一个数组。
+
+total就是hp,attack, defense,sp atk, sp df,speed总和的值，将七个数字分入到一个function。
+how to do classification将pokemon 编号400以下的数据当训练集，400以上编号的数据当测试集。假设我们分类为二分类问题，取值范围为1,-1，那么得出来结果偏1的就是class1, 结果偏-1的就是class2
+
+假设我们用回归的问题做分类问题，就可能会在训练的时候遇到这样的问题
+
+可以看到右图中出现了一些erro ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/08/9.lihongyi/" title="9. Gradient Descent"><img class="post_bg" src="/img/bg/lihongyi8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="9. Gradient Descent"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/08/9.lihongyi/" title="9. Gradient Descent">9. Gradient Descent</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-08T06:05:34.000Z" title="发表于 2021-08-08 14:05:34">2021-08-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content"></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/author_guoba.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">锅巴</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/yikun1025" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jianfang1025@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">技术成神之路</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏"><img src="/img/bg/dadanmu.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js实现的打弹幕游戏"/></a><div class="content"><a class="title" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏">js实现的打弹幕游戏</a><time datetime="2022-06-21T06:38:38.000Z" title="发表于 2022-06-21 14:38:38">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题">无题</a><time datetime="2022-06-21T06:34:36.312Z" title="发表于 2022-06-21 14:34:36">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏"><img src="/img/bg/flappybird.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js的flapp bird游戏"/></a><div class="content"><a class="title" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏">js的flapp bird游戏</a><time datetime="2022-06-20T07:56:00.000Z" title="发表于 2022-06-20 15:56:00">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img src="/img/bg/lihongyi11.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现宝可梦分类以及对宝可梦数据分析"/></a><div class="content"><a class="title" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析">实现宝可梦分类以及对宝可梦数据分析</a><time datetime="2021-08-12T06:05:34.000Z" title="发表于 2021-08-12 14:05:34">2021-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现"><img src="/img/bg/cat.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.锅巴开始做游戏之打砖块实现"/></a><div class="content"><a class="title" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现">1.锅巴开始做游戏之打砖块实现</a><time datetime="2021-08-09T06:05:34.000Z" title="发表于 2021-08-09 14:05:34">2021-08-09</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/linux/"><span class="card-category-list-name">linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BB%BB%E5%8A%A1/"><span class="card-category-list-name">任务</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">深度学习笔记</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">游戏开发</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2/"><span class="card-category-list-name">西方哲学史</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BF%AA%E4%BB%94/"><span class="card-category-list-name">迪仔</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BF%AA%E4%BB%94%E7%9A%84java%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B/"><span class="card-category-list-name">迪仔的java学习教程</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F/"><span class="card-category-list-name">锅巴做游戏</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/caffee/" style="font-size: 1.1em; color: #999">caffee</a> <a href="/tags/cuda/" style="font-size: 1.17em; color: #999c9f">cuda</a> <a href="/tags/cudnn/" style="font-size: 1.17em; color: #999c9f">cudnn</a> <a href="/tags/deeplabv3/" style="font-size: 1.1em; color: #999">deeplabv3</a> <a href="/tags/java/" style="font-size: 1.1em; color: #999">java</a> <a href="/tags/javascript/" style="font-size: 1.17em; color: #999c9f">javascript</a> <a href="/tags/js/" style="font-size: 1.1em; color: #999">js</a> <a href="/tags/keras/" style="font-size: 1.23em; color: #999ea6">keras</a> <a href="/tags/linux/" style="font-size: 1.1em; color: #999">linux</a> <a href="/tags/nvidia/" style="font-size: 1.1em; color: #999">nvidia</a> <a href="/tags/ocr/" style="font-size: 1.43em; color: #99a6b9">ocr</a> <a href="/tags/opencv/" style="font-size: 1.37em; color: #99a4b2">opencv</a> <a href="/tags/segnet/" style="font-size: 1.23em; color: #999ea6">segnet</a> <a href="/tags/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" style="font-size: 1.17em; color: #999c9f">仲夏夜之梦</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA/" style="font-size: 1.1em; color: #999">图像降噪</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.5em; color: #99a9bf">机器学习</a> <a href="/tags/%E6%9D%8E%E5%AE%8F%E6%AF%85/" style="font-size: 1.5em; color: #99a9bf">李宏毅</a> <a href="/tags/%E6%B3%B0%E5%8B%92%E6%96%AF/" style="font-size: 1.1em; color: #999">泰勒斯</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.5em; color: #99a9bf">深度学习</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 1.23em; color: #999ea6">游戏开发</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 1.1em; color: #999">目标检测</a> <a href="/tags/%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB/" style="font-size: 1.1em; color: #999">表格识别</a> <a href="/tags/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2/" style="font-size: 1.1em; color: #999">西方哲学史</a> <a href="/tags/%E8%AF%9D%E5%89%A7/" style="font-size: 1.17em; color: #999c9f">话剧</a> <a href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" style="font-size: 1.23em; color: #999ea6">语义分割</a> <a href="/tags/%E8%B0%83%E7%A0%94/" style="font-size: 1.3em; color: #99a1ac">调研</a> <a href="/tags/%E8%BF%AA%E4%BB%94/" style="font-size: 1.23em; color: #999ea6">迪仔</a> <a href="/tags/%E8%BF%AA%E4%BB%94%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BE%8E%E6%9C%AF%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/" style="font-size: 1.1em; color: #999">迪仔的技术美术成长之路</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 1.17em; color: #999c9f">面向对象</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/08/"><span class="card-archive-list-date">八月 2021</span><span class="card-archive-list-count">15</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">17</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">35</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-06-21T08:34:28.234Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 锅巴</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["持续进步，持续代码"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '持续进步，持续代码'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

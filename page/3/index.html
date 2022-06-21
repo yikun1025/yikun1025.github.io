@@ -1,0 +1,372 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>锅巴要写编译器</title><meta name="author" content="锅巴"><meta name="copyright" content="锅巴"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="锅巴要写编译器">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="锅巴要写编译器">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/author_guoba.png">
+<meta property="article:author" content="锅巴">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/author_guoba.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '锅巴要写编译器',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-06-21 16:34:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/author_guoba.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://w.wallhaven.cc/full/72/wallhaven-721k2y.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">锅巴要写编译器</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">锅巴要写编译器</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/yikun1025" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jianfang1025@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2021/07/31/3.%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/" title="3. 反向传播"><img class="post_bg" src="/img/bg/ai3.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="3. 反向传播"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/31/3.%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/" title="3. 反向传播">3. 反向传播</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-31T13:41:28.000Z" title="发表于 2021-07-31 21:41:28">2021-07-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">Gradient Descent做法就是对于loss function做微分， 然后更新$\theta$, 但是问题是如何有效的处理上百万的参数？
+
+因此反向传播做的事情就是让梯度计算更加有效率。
+chain Rule
+也就是说dz会被dx和dy影响。
+
+对于识别的问题，loss是cross entropy，也就是交叉熵。对于sumCrossEntropy做微分的话就是可以写成这个式子。
+
+通过chain rule可以得到$\frac{\partial C}{\partial Z}$是可以写成$\frac{\partial z}{\partial w}\frac{\partial C}{\partial z}$的那么foward pass就代表$\frac{\partial z}{\partial w}$的过程，backward pass代表$\frac{\partial C}{\partial z}$的过程
+那么这个计算很简单, 就是根据w之前接的input值就是偏微分的值。
+Forward pass
+
+知道微分的值跟input有关后，那么计算就很简单，理解也很容易，对于第一层的值就 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/07/29/ocr%E7%AE%97%E6%B3%95%E8%B0%83%E7%A0%94%E4%BB%A5%E5%8F%8A%E6%9C%AA%E6%9D%A5%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%90%91/" title="ocr算法调研以及未来工作方向"><img class="post_bg" src="/img/bg/ocr1.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ocr算法调研以及未来工作方向"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/29/ocr%E7%AE%97%E6%B3%95%E8%B0%83%E7%A0%94%E4%BB%A5%E5%8F%8A%E6%9C%AA%E6%9D%A5%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%90%91/" title="ocr算法调研以及未来工作方向">ocr算法调研以及未来工作方向</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-29T07:56:00.000Z" title="发表于 2021-07-29 15:56:00">2021-07-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%BB%E5%8A%A1/">任务</a></span></div><div class="content">OCR简介OCR，optical Character Recognition，目的是进场景的文字识别
+这里泛指文字检测识别，扫描文档以及自然场景的文字识别
+OCR应用
+车牌识别
+
+身份证，护照，户口本等名片识别
+
+火车票，快递单识别
+
+发票，医疗表单识别
+
+视频实时翻译，基于文字内容字母翻译，安全监控
+
+
+OCR技术难点
+文字弯曲（打印的字体有一些问题）
+背景干扰（降噪，属于图像恢复）
+字体多变（字体识别需求）
+拍摄模糊（高斯处理）
+
+文字检测算法目前的文字检测算法有两种，一种基于回归，一种基于分隔
+
+CTPN
+SEGLINK
+Textboxes&#x2F;Textboxes++
+East
+LOMO
+SAST
+CRAFT
+
+优点：对规则文本检测效果较好
+缺点：无法准确检测不规则形状文本
+基于分隔的算法
+
+Pixel embedding
+SPCNet
+PSENet
+PAN
+DB
+
+优点： 对不同形状文本检测效果较好，但是无法检测不规则形状文本
+缺点：后处理复杂耗时，重叠文本效果差
+文本检测算法训练文本检测算法对于每一条数据，对应一个强label标注的txt，对应检测的框获得一个对应的js ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/07/28/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%E7%AC%AC%E4%B8%80%E7%AB%A01.1/" title="苏格拉底的前辈-米利都学派"><img class="post_bg" src="/img/bg/wallhaven-8xez1k.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="苏格拉底的前辈-米利都学派"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/28/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2%E7%AC%AC%E4%B8%80%E7%AB%A01.1/" title="苏格拉底的前辈-米利都学派">苏格拉底的前辈-米利都学派</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-28T09:56:00.000Z" title="发表于 2021-07-28 17:56:00">2021-07-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2/">西方哲学史</a></span></div><div class="content">泰勒斯
+过于渴望天上的事情，以至于看不到脚下的东西
+
+如果从理想主义上说，那就是坚定不移的去追逐自己想要的东西，但是如果换一个角度，是否就代表不够脚踏实地？在我看来，只有被称为家的人才有权利以及能力去追逐做研究。
+关于他的小故事也很这句名言有关，他精通天文学，因此可以预测来年的收成，通过预测橄榄的丰收而挣了一大笔钱，并向人类证明哲学家是很容易发财的，只是他们不感兴趣。
+概念，抽象化这些名词是因为哲学而拥有的。泰勒斯尝试解释事物的结构。不论是土壤，云和海洋，不论形态以及事物之间有多大差异，但是事物本身的根本有一定程度的相似性，这个物质就是水。
+虽然这个解释性的回答是错误的，但是能够想出或者尝试提出世界的本质是什么这个问题。世界的构成不再充斥神话，而转向了科学。我觉得西方哲学家可以想探寻事物的一般性规律，想总结一般性这点和中国文化的确有明显的不同，中国的哲学并不好奇构成，更多的在乎精神的和谐，天人合一的状态。这点上说，泰勒斯很了不起，因为他给所有之后的西方哲学家指了一条方向，去探究的方向。
+阿娜克西曼德他是泰勒斯的学生，他随着泰勒斯的事物的构成问题延伸思考下去，只是他不认同事物构成的本质是 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/07/28/%E6%9C%89%E5%85%B3ocr%E5%90%84%E7%B1%BBapi%E7%9A%84%E8%B0%83%E7%A0%94/" title="有关ocr api的调研"><img class="post_bg" src="/img/bg/ocr2.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="有关ocr api的调研"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/28/%E6%9C%89%E5%85%B3ocr%E5%90%84%E7%B1%BBapi%E7%9A%84%E8%B0%83%E7%A0%94/" title="有关ocr api的调研">有关ocr api的调研</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-28T07:56:00.000Z" title="发表于 2021-07-28 15:56:00">2021-07-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%BB%E5%8A%A1/">任务</a></span></div><div class="content">ocr开源情况ocr目标检测模型百度的paddlehub使用了文本检测模型，主要模型为east，骨干网络为resnet，精度如下：
+
+
+
+模型
+骨干网络
+precision
+recall
+Hmean
+
+
+
+EAST
+ResNet50_vd
+85.80%
+86.71%
+86.25%
+
+
+EAST
+MobileNetV3
+79.42%
+80.64%
+80.03%
+
+
+DB
+ResNet50_vd
+86.41%
+78.72%
+82.38%
+
+
+DB
+MobileNetV3
+77.29%
+73.08%
+75.12%
+
+
+SAST
+ResNet50_vd
+91.39%
+83.77%
+87.42%
+
+
+ocr目标识别模型文本识别使用的是CRNN
+
+
+
+模型
+骨干网络
+Avg Accuracy
+模型存储命名
+
+
+
+Rosetta
+Resnet34_vd
+80.9%
+rec_r34_vd_none_none_ctc
+
+
+Rosetta
+MobileNetV3
+78.05%
+rec_mv3_none_none_ctc
+
+
+CRNN
+Resnet34_vd
+82.76%
+rec_r34_vd_none_b ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/07/25/2.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AE%80%E4%BB%8B/" title="2.深度学习简介"><img class="post_bg" src="/img/bg/ai2.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2.深度学习简介"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/25/2.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AE%80%E4%BB%8B/" title="2.深度学习简介">2.深度学习简介</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-25T06:57:36.000Z" title="发表于 2021-07-25 14:57:36">2021-07-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">up and downs of Deep Learning1958年发明了感知机，perceptron，也就是linear model。
+1969年mit发布了论文发表对于deep learning而言是有极限的，因为毕竟还是线性方程组合模型。
+在这个期间也有很多关于深度学习的应用，比如图像识别晴天阴天，但是后来发现此时的识别度并不高，更多是由于亮度值而参考。并没有真正的捕捉到特征。
+于是在1980年代， multi-layer perception的技术已经比较深入了，和现在的deep learning并没有显著的差别。
+1986年出现了backpropagation,当时的问题是超过三个以上的hidden layter不够有效
+但是在1989年的时候，却发现只要一个hidden layter就可以是function，就够强了，所以根本没必要弄那么多的layer，因此这个方法就短时间不够有效，大家更多把精力集中在svm。
+2006年rmb initialization的提出使深度学习的技术有了突破。现在的深度学习和1980年的感知机有何不同？不同在于梯度下降的方式不同，虽然这个模型非 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/07/22/ocr%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83/" title="表格识别综述"><img class="post_bg" src="/img/bg/table.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="表格识别综述"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/22/ocr%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB%E6%90%AD%E5%BB%BA%E7%8E%AF%E5%A2%83/" title="表格识别综述">表格识别综述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-22T09:28:09.000Z" title="发表于 2021-07-22 17:28:09">2021-07-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%BB%E5%8A%A1/">任务</a></span></div><div class="content">表格识别方法综述
+今日任务:搭建环境,尝试理解梳理之前同事写的ocr代码, 并对ocr表格技术写简要综述,明确未来任务计划,参考了一些github资料.
+
+1. 背景表格大小，种类与样式复杂
+
+目前任务是关于通用表格识别的任务,表格识别是下属于文档识别的领域, 具体任务是通过表格获取和访问数据,获得有效信息,并且重构为表格类型. 目前对于这一问题的研究组合要通过图神经网络GCN, R-CNN,FCN以及CGAN等方法模型识别训练.
+
+2. 任务划分表格识别包括表格检测和表格结构体识别两个子任务
+
+表格检测(table detection): 检测表格外框, 方法:目标检测,实例检测,可以用Yolov5, masrcnn等方式检测
+将表格分割为块状, 这里的分割通过表格线划分,同时包含了,表格单元线的检测
+表格结构识别(Table Structure Recognition):通过对表格的数据内容分块,提取出表格中的数据与结构信息，得到行列线条的分布和单元格之间的逻辑结构，也称为表格文档重建
+
+3. 表格分类按照有无边目前有三种表格类型
+
+无边框表格&#x2F;无痕迹线
+少量边框表格&# ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/07/21/%E8%BF%AA%E4%BB%94%E7%9A%84java%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B1/" title="迪仔的java学习教程"><img class="post_bg" src="/img/bg/java2.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="迪仔的java学习教程"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/21/%E8%BF%AA%E4%BB%94%E7%9A%84java%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B1/" title="迪仔的java学习教程">迪仔的java学习教程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-21T06:52:00.000Z" title="发表于 2021-07-21 14:52:00">2021-07-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%BF%AA%E4%BB%94%E7%9A%84java%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B/">迪仔的java学习教程</a></span></div><div class="content">前言：
+
+因为我不算教师，而且理论知识储备也不够详尽，我能做的就是整合ucb的cs61b神课和廖学锋老师的java课程来做一些梳理，计算机是一门工科语言，最需要的就是不断的练习，在联系中理解这些内存机制，数据结构。我希望宝宝可以尽力做一些作业，因为这些作业是国外的大学教授，成千上万的助教花心思布置的作业，目的是让你领会理解，学习是一件辛苦的事情，希望我们一起努力进步。
+
+1. Why Study Algorithms or Data Structures?原因是想做一些有意思的，漂亮的东西。
+链接: https://youtu.be/BIjj3Qcmbf4
+https://www.youtube.com/watch?v=pp1NWRDl0pI
+有关流体渲染的一些建模，更多的就不放了，我们快点进入正题
+2.  从hello world开始12345public class HelloWorld &#123;    public static void main(String[] args) &#123;        System.out.println(&quot;Hello worl ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/07/20/deeplabv3%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C/" title="deeplabv3训练结果"><img class="post_bg" src="/img/bg/deeplab.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="deeplabv3训练结果"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/20/deeplabv3%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C/" title="deeplabv3训练结果">deeplabv3训练结果</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-20T11:35:00.000Z" title="发表于 2021-07-20 19:35:00">2021-07-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%BB%E5%8A%A1/">任务</a></span></div><div class="content">1. deeplabv3DeepLabv是由谷歌研发的语义图像分割模型,  v3的主要变化如下：
+
+使用了Multi-Grid 策略，即在模型后端多加几层不同 rate 的空洞卷积：
+将 batch normalization 加入到 ASPP模块
+ASPP能够有效的捕获多尺度信息
+
+有关aspp，这是五个分支，然后通过不同膨胀卷积特征提取，然后堆叠并且整合特征。
+本次训练用的是Nclasses &#x3D;2，模型骨架为mobilenet的参数，mobilenet适合小型的分割预测，对于多种物体在一张图的分割模型，适合nclasses &gt; 2,骨架选择xception.
+50次训练后效果还可以，需要明天继续调整参数
+
+2. 标签图对比
+左图为segnet的标签预测图，右图为deeplabv3的标签预测图，可以看出deeplabv3的效果很明显优于segnet,对于轮廓的粗细度更加精确，断连的部分也是连接上了。
+
+左图为项目的标签预测图，右图为deeplabv3的标签预测图，因为项目图有进行修改并且处理，因此肯定是项目图的指静脉效果更好，连接的更好，也没有小点.
+
+最终验证集的v ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/07/19/segnet%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C%E5%8F%8A%E6%96%B0%E6%A8%A1%E5%9E%8B/" title="segnet训练结果及新模型"><img class="post_bg" src="/img/bg/segnet2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="segnet训练结果及新模型"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/19/segnet%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C%E5%8F%8A%E6%96%B0%E6%A8%A1%E5%9E%8B/" title="segnet训练结果及新模型">segnet训练结果及新模型</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-19T09:15:09.000Z" title="发表于 2021-07-19 17:15:09">2021-07-19</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%BB%E5%8A%A1/">任务</a></span></div><div class="content">1. segnet调参后结果经过调整参数学习率和batch_size之后,模型达到了较为不错的预期效果。
+
+这是25轮后的效果比对图
+
+从中选择最好效果的模型生成的标签图
+500轮后val_acc没有降,因此模型没有太大变化
+
+
+2. segnet的train,loss,acc,val_acc图
+之前训练黑色,各种问题,原来还是因为版本导致的,之前安装的tensorflow版本过高,导致训练慢,并且loss出现了nan ,重新卸载在使用安装后没有了这个问题
+3.  使keras搭建deeplabv之前本想使用下载后发现模型并未开源,不能拿来自己训练,只能用公司提供的模型,并且模型适配分割⻋辆,因此作罢,想尝试使用deeplab3本次使用的是google开源的deeplab3模型,目前正在修改数据预处理方式
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/07/18/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8B)/" title="1.深度学习机器学习基本概念(下)"><img class="post_bg" src="/img/bg/ai1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.深度学习机器学习基本概念(下)"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/18/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8B)/" title="1.深度学习机器学习基本概念(下)">1.深度学习机器学习基本概念(下)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-07-18T09:10:36.000Z" title="发表于 2021-07-18 17:10:36">2021-07-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">1. Linear model太简单了？实际函数可能并非是线性关系，而是多个线性函数方程组成的组合方程。
+
+即使参数再准确，仍然无法预测的精准，那么这就被称为模型限制，没有办法模拟真实的状况。因此我们需要更复杂的模型
+1.1  构建复杂model假设真实模型为红线所示，那么可以看出这是三个分段线性函数组成的组合函数
+
+那么第一段红线就可以由0线+1线，0线就是$y&#x3D;b_{1}$的函数，而1线在从0到峰顶过程中设置为slope一致，那么就是$y&#x3D;w_{2}x+b_{2}$那么同样思路可以有2线和3线
+
+1.2  piecewise linear这种多个线段组成的curver就被称为piecewise linear curve，基本都是常数项加许多线段的组合，只是蓝色function不同。
+
+1.3  beyong piecewise Linear但是有些curve可能是平滑的曲线，但我们仍然可以把它等价为piecewise linear
+因为我们可以通过描点近似连线的方式等价。
+
+因此实际上任何一个function都可以通过这种方式逼近。
+1.4  beyong pi ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/author_guoba.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">锅巴</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/yikun1025" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jianfang1025@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">技术成神之路</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏"><img src="/img/bg/dadanmu.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js实现的打弹幕游戏"/></a><div class="content"><a class="title" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏">js实现的打弹幕游戏</a><time datetime="2022-06-21T06:38:38.000Z" title="发表于 2022-06-21 14:38:38">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题">无题</a><time datetime="2022-06-21T06:34:36.312Z" title="发表于 2022-06-21 14:34:36">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏"><img src="/img/bg/flappybird.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js的flapp bird游戏"/></a><div class="content"><a class="title" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏">js的flapp bird游戏</a><time datetime="2022-06-20T07:56:00.000Z" title="发表于 2022-06-20 15:56:00">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img src="/img/bg/lihongyi11.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现宝可梦分类以及对宝可梦数据分析"/></a><div class="content"><a class="title" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析">实现宝可梦分类以及对宝可梦数据分析</a><time datetime="2021-08-12T06:05:34.000Z" title="发表于 2021-08-12 14:05:34">2021-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现"><img src="/img/bg/cat.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.锅巴开始做游戏之打砖块实现"/></a><div class="content"><a class="title" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现">1.锅巴开始做游戏之打砖块实现</a><time datetime="2021-08-09T06:05:34.000Z" title="发表于 2021-08-09 14:05:34">2021-08-09</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/linux/"><span class="card-category-list-name">linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BB%BB%E5%8A%A1/"><span class="card-category-list-name">任务</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">深度学习笔记</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">游戏开发</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2/"><span class="card-category-list-name">西方哲学史</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BF%AA%E4%BB%94/"><span class="card-category-list-name">迪仔</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BF%AA%E4%BB%94%E7%9A%84java%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B/"><span class="card-category-list-name">迪仔的java学习教程</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F/"><span class="card-category-list-name">锅巴做游戏</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/caffee/" style="font-size: 1.1em; color: #999">caffee</a> <a href="/tags/cuda/" style="font-size: 1.17em; color: #999c9f">cuda</a> <a href="/tags/cudnn/" style="font-size: 1.17em; color: #999c9f">cudnn</a> <a href="/tags/deeplabv3/" style="font-size: 1.1em; color: #999">deeplabv3</a> <a href="/tags/java/" style="font-size: 1.1em; color: #999">java</a> <a href="/tags/javascript/" style="font-size: 1.17em; color: #999c9f">javascript</a> <a href="/tags/js/" style="font-size: 1.1em; color: #999">js</a> <a href="/tags/keras/" style="font-size: 1.23em; color: #999ea6">keras</a> <a href="/tags/linux/" style="font-size: 1.1em; color: #999">linux</a> <a href="/tags/nvidia/" style="font-size: 1.1em; color: #999">nvidia</a> <a href="/tags/ocr/" style="font-size: 1.43em; color: #99a6b9">ocr</a> <a href="/tags/opencv/" style="font-size: 1.37em; color: #99a4b2">opencv</a> <a href="/tags/segnet/" style="font-size: 1.23em; color: #999ea6">segnet</a> <a href="/tags/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" style="font-size: 1.17em; color: #999c9f">仲夏夜之梦</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA/" style="font-size: 1.1em; color: #999">图像降噪</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.5em; color: #99a9bf">机器学习</a> <a href="/tags/%E6%9D%8E%E5%AE%8F%E6%AF%85/" style="font-size: 1.5em; color: #99a9bf">李宏毅</a> <a href="/tags/%E6%B3%B0%E5%8B%92%E6%96%AF/" style="font-size: 1.1em; color: #999">泰勒斯</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.5em; color: #99a9bf">深度学习</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 1.23em; color: #999ea6">游戏开发</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 1.1em; color: #999">目标检测</a> <a href="/tags/%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB/" style="font-size: 1.1em; color: #999">表格识别</a> <a href="/tags/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2/" style="font-size: 1.1em; color: #999">西方哲学史</a> <a href="/tags/%E8%AF%9D%E5%89%A7/" style="font-size: 1.17em; color: #999c9f">话剧</a> <a href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" style="font-size: 1.23em; color: #999ea6">语义分割</a> <a href="/tags/%E8%B0%83%E7%A0%94/" style="font-size: 1.3em; color: #99a1ac">调研</a> <a href="/tags/%E8%BF%AA%E4%BB%94/" style="font-size: 1.23em; color: #999ea6">迪仔</a> <a href="/tags/%E8%BF%AA%E4%BB%94%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BE%8E%E6%9C%AF%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/" style="font-size: 1.1em; color: #999">迪仔的技术美术成长之路</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 1.17em; color: #999c9f">面向对象</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/08/"><span class="card-archive-list-date">八月 2021</span><span class="card-archive-list-count">15</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">17</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">35</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-06-21T08:34:28.234Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 锅巴</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["持续进步，持续代码"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '持续进步，持续代码'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>5. 类神经网络训练(loss and batch Normalization) | 锅巴要写编译器</title><meta name="keywords" content="深度学习,机器学习,李宏毅"><meta name="author" content="锅巴"><meta name="copyright" content="锅巴"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Classification as Regression? 在分类问题中，可以根据输出来定义分类，但是这个分类属于人为定义的，因此不一定完全准确。 class as one-hot vectorone-hot 就是对于给定的class标1，其余为0的方式。 假设我们目前要分类的是只有3个class，那么可以得知输出的向量是包含三个数字的，确定了output是什么形式，就需要修改神经网络，因为原本输">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5. 类神经网络训练(loss and batch Normalization)">
+<meta property="og:url" content="http://example.com/2021/08/06/5.5/index.html">
+<meta property="og:site_name" content="锅巴要写编译器">
+<meta property="og:description" content="Classification as Regression? 在分类问题中，可以根据输出来定义分类，但是这个分类属于人为定义的，因此不一定完全准确。 class as one-hot vectorone-hot 就是对于给定的class标1，其余为0的方式。 假设我们目前要分类的是只有3个class，那么可以得知输出的向量是包含三个数字的，确定了output是什么形式，就需要修改神经网络，因为原本输">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/bg/lihongyi7.png">
+<meta property="article:published_time" content="2021-08-06T09:03:34.000Z">
+<meta property="article:modified_time" content="2022-06-20T09:52:12.000Z">
+<meta property="article:author" content="锅巴">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="李宏毅">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/bg/lihongyi7.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/08/06/5.5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '5. 类神经网络训练(loss and batch Normalization)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-20 17:52:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/author_guoba.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/bg/lihongyi7.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">锅巴要写编译器</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">5. 类神经网络训练(loss and batch Normalization)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-06T09:03:34.000Z" title="发表于 2021-08-06 17:03:34">2021-08-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-06-20T09:52:12.000Z" title="更新于 2022-06-20 17:52:12">2022-06-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="5. 类神经网络训练(loss and batch Normalization)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="Classification-as-Regression"><a href="#Classification-as-Regression" class="headerlink" title="Classification as Regression?"></a>Classification as Regression?</h4><p><img src="/5.5/image-20210806170955994.png"></p>
+<p>在分类问题中，可以根据输出来定义分类，但是这个分类属于人为定义的，因此不一定完全准确。</p>
+<h4 id="class-as-one-hot-vector"><a href="#class-as-one-hot-vector" class="headerlink" title="class as one-hot vector"></a>class as one-hot vector</h4><p>one-hot 就是对于给定的class标1，其余为0的方式。</p>
+<p>假设我们目前要分类的是只有3个class，那么可以得知输出的向量是包含三个数字的，确定了output是什么形式，就需要修改神经网络，因为原本输出的是一个scalar，只有一个数值。</p>
+<p><img src="/5.5/image-20210806173124276.png"></p>
+<p>我们可以对activation的值加上不同的w和b就可以得到三个值</p>
+<p>除此之外，分类问题还需要再计算一次softmax，来计算y跟$yhat$​​​的距离。</p>
+<p>soft-max的方式就是归一化，把输出的值改为0或者1。</p>
+<h4 id="soft-max"><a href="#soft-max" class="headerlink" title="soft-max"></a>soft-max</h4><p><img src="/5.5/image-20210806174012661.png"></p>
+<p>公式就是如图所示，假设$y_{1}$,$y_{2}$,$y_{3}$的值为3,1,-3,那么都除以e，e的值是2.7<br>$$<br>e^3 &#x3D; 20 \quad e^1 &#x3D; 2.7 \quad e^-3 &#x3D; 0.05 \<br>\sum(e^3+e^1+e^-3)&#x3D;22.75 \<br>y_{1}^{‘} &#x3D; 20&#x2F;22.7 &#x3D; 0.88 \quad y_{2}^{‘}&#x3D;0.12 \quad y_{3}^{‘}&#x3D;0<br>$$</p>
+<h4 id="Loss-of-Classification"><a href="#Loss-of-Classification" class="headerlink" title="Loss of Classification"></a>Loss of Classification</h4><p>因为是算概率，因此不再使用mse的方式计算loss，而是使用cross-entropy的方式计算。使交叉熵最小的方式实际上等同于最大似然的。</p>
+<p><img src="/5.5/image-20210806175400663.png"></p>
+<p>那么为什么一定要用cross entropy而不是用mse呢？假设$y_{1}$, $y_{2}$处于-10到10之间，$y_{3}$处于-1000,那么$y_{3}$很容易得到偏0的值</p>
+<p>如果不是cross entropy的方式，其中两个值偏小的话，一个值偏大也会得到很小的loss，但是train的话会因为过于平坦导致训练很容易卡住。</p>
+<p><img src="/5.5/image-20210806175706962.png"></p>
+<h4 id="Chaning-Landscape"><a href="#Chaning-Landscape" class="headerlink" title="Chaning Landscape"></a>Chaning Landscape</h4><p>将山铲平是另一种避免在saddle point卡住的方法。假设目前有两个参数共同决定loss，那么如下图所示，$w_{1}$的梯度比较陡峭，斜率变化很小。$w_{2}$的梯度比较平缓，斜率变化很大。因此综合下来的learning rate结果并不一定很好。</p>
+<img src="5.5/image-20210807091852924.png" alt="" style="zoom:33%;" />
+$w_{1}$
+假设目前有一个非常简单的model，输入只有$x_{1}x_{2}$, 参数只有$w_{1}w_{2}$, 并且输出没有activation function，是个极其简单的linear model。
+
+<p>对于这个function，假设$x_{1}$很小，那么因为$w_{1}$需要与$x_{1}$相乘，因此会导致y很小，y很小导致learning rate的公式的loss很小</p>
+<p><img src="/5.5/image-20210807094209920.png"></p>
+<p>如果很大，则会是这种情况</p>
+<p><img src="/5.5/image-20210807094441745.png"></p>
+<p>因此我们应该对不同的input设定一个不同的值来应对gradient的情况。让不论在什么方向手上都会使learning rate是均匀的。</p>
+<img src="5.5/image-20210807094713444.png" alt="image-20210807094713444" style="zoom:50%;" />
+
+<h4 id="Feature-Normalization"><a href="#Feature-Normalization" class="headerlink" title="Feature Normalization"></a>Feature Normalization</h4><h5 id="Training-Normalization"><a href="#Training-Normalization" class="headerlink" title="Training Normalization"></a>Training Normalization</h5><p>特征标准化的过程就是我们将每一个input找他们在这一个dimension的mean和standard deviation ，做归一化，standardization。用新的值替换为原来的值。</p>
+<p><img src="/5.5/image-20210807095014907.png"></p>
+<p>归一化后在所有dimmension的平均值为0，在所有variances的值为1。</p>
+<p>不仅对于输入要做feature normalization，对于输出的z和a也要做。对于z或者a做feature normalization没有太大区别，只需要对一个输出做即可。</p>
+<p><img src="/5.5/image-20210807095629625.png"></p>
+<p>对于z做feature normalization的方式其实也是一样，需要算mean，算sd，然后再除以总共的class数。</p>
+<p><img src="/5.5/image-20210807100538678.png"></p>
+<p> 那么最后套入公式，替换原本的z输出即可。</p>
+<p><img src="/5.5/image-20210807100708040.png"></p>
+<p>对于$z_{1}$做feature normlization，会导致$\tilde{z_{1}}$改变，继而导致$a_{1}$改变，继而导致$z_{2}$改变，因此整个network都发生了改变</p>
+<p>因为这是一个巨大的network的资料同时喂入计算，因此我们喂入资料是按照batch来计算的，因此应该是对这个batch做normalization，因此这个方式被成为batch normalization。</p>
+<p><img src="/5.5/image-20210807102441489.png"></p>
+<p>因为标准化后的$\tilde{z}$的平均值为0，我们还是不希望让输出完全归一，应该增加一些bias，所以引入了新的变量$\gamma\beta$，让输出会有一些不同。</p>
+<h4 id="Testing-Normalization"><a href="#Testing-Normalization" class="headerlink" title="Testing Normalization"></a>Testing Normalization</h4><p>在training的时候是根据batch来计算每一个batch然后标准化，但是在test的时候我们并未设定batch，那么应该如何做呢</p>
+<p>这个方式就是通过计算<code>moving average</code>，即在训练的时候中通过batch计算的一个从参数代入到测试的$\tilde{z_{1}}$。</p>
+<p><img src="/5.5/image-20210807103047596.png"></p>
+<h5 id="Batch-normalization-result"><a href="#Batch-normalization-result" class="headerlink" title="Batch normalization result"></a>Batch normalization result</h5><p>此图为引入batch normalization在cnn上的效果，可见引入batch normalization后训练收敛时间相较于没有batch normalization比短了很多、</p>
+<p><img src="/5.5/image-20210807103256928.png"></p>
+<h4 id="Internal-Covariate-Shift"><a href="#Internal-Covariate-Shift" class="headerlink" title="Internal Covariate Shift"></a>Internal Covariate Shift</h4><p><img src="/5.5/image-20210807103440727.png"></p>
+<p>原作者提出了一个理念，$B^{’}$的参数是被a影响，而不是根据$a^{’}$计算，而$a$是上一层神经网络的参数，因此更新参数的时候并没有非常准确。因此batch normalization的方式因为可以让整个network都会变化，因此会有利于寻找参数。</p>
+<p>但是18年这篇paper就提出了这个观点并不可靠，他发现$a^{’}，a$的方向并没有很大变化，因此驳斥了internal cavariate shift是的理念。</p>
+<p><img src="/5.5/image-20210807104242017.png"></p>
+<p>但是这篇论文仍然支持了batch normalization是有效的，是可以让error surface变得平缓，但是他也发现了很多其他方式可以让error surface更平缓。除此之外还有很多其他normalization的方式，比如以下。</p>
+<img src="5.5/image-20210807104451554.png" alt="image-20210807104451554" style="zoom:50%;" />
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">锅巴</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/06/5.5/">http://example.com/2021/08/06/5.5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">锅巴要写编译器</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="post-meta__tags" href="/tags/%E6%9D%8E%E5%AE%8F%E6%AF%85/">李宏毅</a></div><div class="post_share"><div class="social-share" data-image="/img/bg/lihongyi7.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/07/6.lihongyi/"><img class="prev-cover" src="/img/bg/lihongyi8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">6.new optimizers for Deep Learning</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/06/linux%E5%B0%8F%E6%8A%80%E5%B7%A7/"><img class="next-cover" src="/img/bg/linux.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">linux小技巧</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/07/14/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8A)/" title="1.深度学习机器学习基本概念(上)"><img class="cover" src="/img/bg/1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-14</div><div class="title">1.深度学习机器学习基本概念(上)</div></div></a></div><div><a href="/2021/07/18/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8B)/" title="1.深度学习机器学习基本概念(下)"><img class="cover" src="/img/bg/ai1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-18</div><div class="title">1.深度学习机器学习基本概念(下)</div></div></a></div><div><a href="/2021/08/08/10.%20Classification/" title="10.Classification"><img class="cover" src="/img/bg/lihongyi11.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-08</div><div class="title">10.Classification</div></div></a></div><div><a href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img class="cover" src="/img/bg/lihongyi11.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-12</div><div class="title">实现宝可梦分类以及对宝可梦数据分析</div></div></a></div><div><a href="/2021/07/25/2.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AE%80%E4%BB%8B/" title="2.深度学习简介"><img class="cover" src="/img/bg/ai2.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-25</div><div class="title">2.深度学习简介</div></div></a></div><div><a href="/2021/07/31/3.%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/" title="3. 反向传播"><img class="cover" src="/img/bg/ai3.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-31</div><div class="title">3. 反向传播</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/author_guoba.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">锅巴</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/yikun1025" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jianfang1025@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">技术成神之路</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Classification-as-Regression"><span class="toc-number">1.</span> <span class="toc-text">Classification as Regression?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#class-as-one-hot-vector"><span class="toc-number">2.</span> <span class="toc-text">class as one-hot vector</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#soft-max"><span class="toc-number">3.</span> <span class="toc-text">soft-max</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Loss-of-Classification"><span class="toc-number">4.</span> <span class="toc-text">Loss of Classification</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Chaning-Landscape"><span class="toc-number">5.</span> <span class="toc-text">Chaning Landscape</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Feature-Normalization"><span class="toc-number">6.</span> <span class="toc-text">Feature Normalization</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Training-Normalization"><span class="toc-number">6.1.</span> <span class="toc-text">Training Normalization</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Testing-Normalization"><span class="toc-number">7.</span> <span class="toc-text">Testing Normalization</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Batch-normalization-result"><span class="toc-number">7.1.</span> <span class="toc-text">Batch normalization result</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Internal-Covariate-Shift"><span class="toc-number">8.</span> <span class="toc-text">Internal Covariate Shift</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏"><img src="/img/bg/dadanmu.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js实现的打弹幕游戏"/></a><div class="content"><a class="title" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏">js实现的打弹幕游戏</a><time datetime="2022-06-21T06:38:38.000Z" title="发表于 2022-06-21 14:38:38">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题">无题</a><time datetime="2022-06-21T06:34:36.312Z" title="发表于 2022-06-21 14:34:36">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏"><img src="/img/bg/flappybird.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js的flapp bird游戏"/></a><div class="content"><a class="title" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏">js的flapp bird游戏</a><time datetime="2022-06-20T07:56:00.000Z" title="发表于 2022-06-20 15:56:00">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img src="/img/bg/lihongyi11.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现宝可梦分类以及对宝可梦数据分析"/></a><div class="content"><a class="title" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析">实现宝可梦分类以及对宝可梦数据分析</a><time datetime="2021-08-12T06:05:34.000Z" title="发表于 2021-08-12 14:05:34">2021-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现"><img src="/img/bg/cat.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.锅巴开始做游戏之打砖块实现"/></a><div class="content"><a class="title" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现">1.锅巴开始做游戏之打砖块实现</a><time datetime="2021-08-09T06:05:34.000Z" title="发表于 2021-08-09 14:05:34">2021-08-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 锅巴</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

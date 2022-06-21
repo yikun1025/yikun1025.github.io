@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>1.深度学习机器学习基本概念(下) | 锅巴要写编译器</title><meta name="keywords" content="深度学习,机器学习,李宏毅"><meta name="author" content="锅巴"><meta name="copyright" content="锅巴"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="李宏毅机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.深度学习机器学习基本概念(下)">
+<meta property="og:url" content="http://example.com/2021/07/18/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8B)/index.html">
+<meta property="og:site_name" content="锅巴要写编译器">
+<meta property="og:description" content="李宏毅机器学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/bg/ai1.png">
+<meta property="article:published_time" content="2021-07-18T09:10:36.000Z">
+<meta property="article:modified_time" content="2022-06-21T07:20:43.602Z">
+<meta property="article:author" content="锅巴">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="李宏毅">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/bg/ai1.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/07/18/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8B)/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '1.深度学习机器学习基本概念(下)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-21 15:20:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/author_guoba.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/bg/ai1.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">锅巴要写编译器</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">1.深度学习机器学习基本概念(下)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-18T09:10:36.000Z" title="发表于 2021-07-18 17:10:36">2021-07-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-06-21T07:20:43.602Z" title="更新于 2022-06-21 15:20:43">2022-06-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="1.深度学习机器学习基本概念(下)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h5 id="1-Linear-model太简单了？"><a href="#1-Linear-model太简单了？" class="headerlink" title="1. Linear model太简单了？"></a>1. Linear model太简单了？</h5><p>实际函数可能并非是线性关系，而是多个线性函数方程组成的组合方程。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiC2d"><img src="https://s1.ax1x.com/2022/06/21/jSiC2d.png" alt="jSiC2d.png"></a></p>
+<p>即使参数再准确，仍然无法预测的精准，那么这就被称为模型限制，没有办法模拟真实的状况。因此我们需要更复杂的模型</p>
+<h6 id="1-1-构建复杂model"><a href="#1-1-构建复杂model" class="headerlink" title="1.1  构建复杂model"></a>1.1  构建复杂model</h6><p>假设真实模型为红线所示，那么可以看出这是三个分段线性函数组成的组合函数</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSi98H"><img src="https://s1.ax1x.com/2022/06/21/jSi98H.png" alt="jSi98H.png"></a></p>
+<p>那么第一段红线就可以由0线+1线，0线就是$y&#x3D;b_{1}$的函数，而1线在从0到峰顶过程中设置为slope一致，那么就是$y&#x3D;w_{2}x+b_{2}$那么同样思路可以有2线和3线</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiPxA"><img src="https://s1.ax1x.com/2022/06/21/jSiPxA.png" alt="jSiPxA.png"></a></p>
+<h6 id="1-2-piecewise-linear"><a href="#1-2-piecewise-linear" class="headerlink" title="1.2  piecewise linear"></a>1.2  piecewise linear</h6><p>这种多个线段组成的curver就被称为piecewise linear curve，基本都是常数项加许多线段的组合，只是蓝色function不同。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiPxA"><img src="https://s1.ax1x.com/2022/06/21/jSiPxA.png" alt="jSiPxA.png"></a></p>
+<h6 id="1-3-beyong-piecewise-Linear"><a href="#1-3-beyong-piecewise-Linear" class="headerlink" title="1.3  beyong piecewise Linear"></a>1.3  beyong piecewise Linear</h6><p>但是有些curve可能是平滑的曲线，但我们仍然可以把它等价为piecewise linear</p>
+<p>因为我们可以通过描点近似连线的方式等价。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSipPe"><img src="https://s1.ax1x.com/2022/06/21/jSipPe.png" alt="jSipPe.png"></a></p>
+<p>因此实际上任何一个function都可以通过这种方式逼近。</p>
+<h6 id="1-4-beyong-piecewise-Linear"><a href="#1-4-beyong-piecewise-Linear" class="headerlink" title="1.4  beyong piecewise Linear"></a>1.4  beyong piecewise Linear</h6><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSikrt"><img src="https://s1.ax1x.com/2022/06/21/jSikrt.png" alt="jSikrt.png"></a></p>
+<p>像这样的图其实可以用一种函数表示，这种函数叫做sigmoid function所以实际可以写成</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiAqP"><img src="https://s1.ax1x.com/2022/06/21/jSiAqP.png" alt="jSiAqP.png"></a></p>
+<p>这个蓝色的function常见的名字就是hard sigmoid。通过调整不同的w，b，c来获得不同的sigmod functioon</p>
+<h6 id="1-5-differentw-b-c-simogid-function"><a href="#1-5-differentw-b-c-simogid-function" class="headerlink" title="1.5 differentw,b,c simogid function"></a>1.5 differentw,b,c simogid function</h6><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiAqP"><img src="https://s1.ax1x.com/2022/06/21/jSiAqP.png" alt="jSiAqP.png"></a></p>
+<p>通过修改不同的w，b，c就可以拿来近似各种不同的continuous的function</p>
+<p>w的变化导致斜率，b的变化会导致偏移，c的变化会改变高度</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiVVf"><img src="https://s1.ax1x.com/2022/06/21/jSiVVf.png" alt="jSiVVf.png"></a></p>
+<p>对于红色的组合函数1，就是通过3+2+0组成，那么3，2都可以写成sigmoid，只是拥有不同的b和w，而0就是一个常数，因此可以写成单纯的constantb</p>
+<p>那么组合后的公式就是：</p>
+<p>$$<br>y &#x3D; b + \sum_{i}^{} c_{i}sigmoid(b_{i} + w_{i}x_{i})<br>$$</p>
+<h5 id="2-New-Model-More-Features"><a href="#2-New-Model-More-Features" class="headerlink" title="2. New Model: More Features"></a>2. New Model: More Features</h5><p>这个模型其实还是有一定限制的，作为linear function的限制，因此又被称作为model bias。   </p>
+<p>假设天数是28天，天数设为j，那么可以写成以下形式</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiVVf"><img src="https://s1.ax1x.com/2022/06/21/jSiVVf.png" alt="jSiVVf.png"></a></p>
+<p>如果j为1，2，3，那么x1代表前一天观看人数，x2代表</p>
+<p>两天前观看人数，x3代表三天前观看人数。那么蓝色框部分的计算可以写成以下图所示：</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiZa8"><img src="https://s1.ax1x.com/2022/06/21/jSiZa8.png" alt="jSiZa8.png"></a></p>
+<p>对于这部分的计算其实可以用更简洁的方式计算，也就是线代的矩阵计算。这也是深度学习为什么蓬勃发展的最主要原因，矩阵运算较为快速，可以使用gpu，技术本身没有什么大的进步。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiuGQ"><img src="https://s1.ax1x.com/2022/06/21/jSiuGQ.png" alt="jSiuGQ.png"></a></p>
+<p>对于r最终需要通过激活函数也就是sigmoid  function来获得a</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSinPg"><img src="https://s1.ax1x.com/2022/06/21/jSinPg.png" alt="jSinPg.png"></a></p>
+<h6 id="2-1-functions-with-unknown-parameters"><a href="#2-1-functions-with-unknown-parameters" class="headerlink" title="2.1 functions with unknown parameters"></a>2.1 functions with unknown parameters</h6><p>我们现在重新定义未知惨呼，那么x就是feature，那么未知参数就是以下这些</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSinPg"><img src="https://s1.ax1x.com/2022/06/21/jSinPg.png" alt="jSinPg.png"></a></p>
+<p>把这些未知参数拉直后就可以获得一维向量，那么就可以得到一个新的参数$\theta$</p>
+<h6 id="2-2-optimization"><a href="#2-2-optimization" class="headerlink" title="2.2 optimization"></a>2.2 optimization</h6><p>当参数多起来后，就得找一个优化方法，比如gradient descent来找到loss最低的参数。</p>
+<p>那么loss就可以写成跟$\theta$相关的函数，要找的就是loss最小的参数值，参数值可以确定模型，因此就可以获得关于这个问题的函数模型。</p>
+<p>所谓梯度的方法，就是做微分的过程</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiK2j"><img src="https://s1.ax1x.com/2022/06/21/jSiK2j.png" alt="jSiK2j.png"></a></p>
+<p>初始自己选择一个参数来开始做微分，获得g1，更新参数的步骤就是根据做微分的结果，可以获得参数$\theta$，然后循环往复。</p>
+<p>在做gradient descent的时候，我们并不是一次性把数据完全喂入模型获得梯度，而是把数据划分成一个个batch。对于每一个batch做一次的梯度，因此每个batch具有一个loss值，假设batch为三组，那么loss就是同样三组，为loss1,loss2,loss3。所有的batch都计算完就叫做一个epoch，每一次更新参数就叫做一次update。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiMxs"><img src="https://s1.ax1x.com/2022/06/21/jSiMxs.png" alt="jSiMxs.png"></a></p>
+<h6 id="2-3-sigmoid-gt-relu"><a href="#2-3-sigmoid-gt-relu" class="headerlink" title="2.3 sigmoid-&gt;relu"></a>2.3 sigmoid-&gt;relu</h6><p>sigmoid作为激活函数是比较限制的，sigmoid函数其实可以看做两个relu函数相加。</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSilMn"><img src="https://s1.ax1x.com/2022/06/21/jSilMn.png" alt="jSilMn.png"></a></p>
+<p>relu的输出最小值是0，因此可以防止小于0的输出。模型修改的话，就把sigmoid改成relu，因为sigmoid等于两个relu函数，就可以写成relu*2</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSi1rq"><img src="https://s1.ax1x.com/2022/06/21/jSi1rq.png" alt="jSi1rq.png"></a></p>
+<p>那么relu更好呢还是sigmoid更好呢？对于youtube channel这个问题，实验数据结果如下</p>
+<h6 id="2-4-relu-experiment-results"><a href="#2-4-relu-experiment-results" class="headerlink" title="2.4 relu experiment results"></a>2.4 relu experiment results</h6><p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSi3q0"><img src="https://s1.ax1x.com/2022/06/21/jSi3q0.png" alt="jSi3q0.png"></a><br>可见如果用的relu模型越多，验证集和训练集的loss都有明显的下降。</p>
+<p>除了可以增加模型的relu次数，也可以选择怎更加模型的层数，随着模型层数的增加loss也会变化</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiYIU"><img src="https://s1.ax1x.com/2022/06/21/jSiYIU.png" alt="jSiYIU.png"></a></p>
+<h5 id="3-为什么被称为deep-learning？"><a href="#3-为什么被称为deep-learning？" class="headerlink" title="3. 为什么被称为deep learning？"></a>3. 为什么被称为deep learning？</h5><p>因为要取个fancy name来吸引投资，吸引不懂行的人，告诉大家这就是AI，实际上AI所做的事情不过是计算，达到真正的人工智能还需要非常非常远的距离。</p>
+<p>每年新出的模型层数都是越来越高，那么是否代表模型越复杂效果越好呢？</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiGZV"><img src="https://s1.ax1x.com/2022/06/21/jSiGZV.png" alt="jSiGZV.png"></a></p>
+<h5 id="4-过拟合"><a href="#4-过拟合" class="headerlink" title="4. 过拟合"></a>4. 过拟合</h5><p>其实并不是，如果我们把模型的层数很复杂，那么模型会在训练集效果很好，但是在测试集效果会变差。而这就是过拟合</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/jSiNiF"><img src="https://s1.ax1x.com/2022/06/21/jSiNiF.png" alt="jSiNiF.png"></a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">锅巴</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/07/18/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8B)/">http://example.com/2021/07/18/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8B)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">锅巴要写编译器</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="post-meta__tags" href="/tags/%E6%9D%8E%E5%AE%8F%E6%AF%85/">李宏毅</a></div><div class="post_share"><div class="social-share" data-image="/img/bg/ai1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/07/19/segnet%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C%E5%8F%8A%E6%96%B0%E6%A8%A1%E5%9E%8B/"><img class="prev-cover" src="/img/bg/segnet2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">segnet训练结果及新模型</div></div></a></div><div class="next-post pull-right"><a href="/2021/07/18/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%83/"><img class="next-cover" src="/img/bg/dizai3.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">流浪地球和我们的小家</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/07/14/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8A)/" title="1.深度学习机器学习基本概念(上)"><img class="cover" src="/img/bg/1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-14</div><div class="title">1.深度学习机器学习基本概念(上)</div></div></a></div><div><a href="/2021/08/08/10.%20Classification/" title="10.Classification"><img class="cover" src="/img/bg/lihongyi11.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-08</div><div class="title">10.Classification</div></div></a></div><div><a href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img class="cover" src="/img/bg/lihongyi11.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-12</div><div class="title">实现宝可梦分类以及对宝可梦数据分析</div></div></a></div><div><a href="/2021/07/25/2.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AE%80%E4%BB%8B/" title="2.深度学习简介"><img class="cover" src="/img/bg/ai2.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-25</div><div class="title">2.深度学习简介</div></div></a></div><div><a href="/2021/07/31/3.%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/" title="3. 反向传播"><img class="cover" src="/img/bg/ai3.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-31</div><div class="title">3. 反向传播</div></div></a></div><div><a href="/2021/08/03/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%BB%BB%E5%8A%A1%E6%94%BB%E7%95%A5/" title="4.机器学习任务攻略"><img class="cover" src="/img/bg/lihongyi4.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-03</div><div class="title">4.机器学习任务攻略</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/author_guoba.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">锅巴</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/yikun1025" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jianfang1025@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">技术成神之路</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Linear-model%E5%A4%AA%E7%AE%80%E5%8D%95%E4%BA%86%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">1. Linear model太简单了？</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#1-1-%E6%9E%84%E5%BB%BA%E5%A4%8D%E6%9D%82model"><span class="toc-number">1.1.</span> <span class="toc-text">1.1  构建复杂model</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-2-piecewise-linear"><span class="toc-number">1.2.</span> <span class="toc-text">1.2  piecewise linear</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-3-beyong-piecewise-Linear"><span class="toc-number">1.3.</span> <span class="toc-text">1.3  beyong piecewise Linear</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-4-beyong-piecewise-Linear"><span class="toc-number">1.4.</span> <span class="toc-text">1.4  beyong piecewise Linear</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-5-differentw-b-c-simogid-function"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 differentw,b,c simogid function</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-New-Model-More-Features"><span class="toc-number">2.</span> <span class="toc-text">2. New Model: More Features</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#2-1-functions-with-unknown-parameters"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 functions with unknown parameters</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-2-optimization"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 optimization</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-3-sigmoid-gt-relu"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 sigmoid-&gt;relu</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-4-relu-experiment-results"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 relu experiment results</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A2%AB%E7%A7%B0%E4%B8%BAdeep-learning%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">3. 为什么被称为deep learning？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E8%BF%87%E6%8B%9F%E5%90%88"><span class="toc-number">4.</span> <span class="toc-text">4. 过拟合</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏"><img src="/img/bg/dadanmu.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js实现的打弹幕游戏"/></a><div class="content"><a class="title" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏">js实现的打弹幕游戏</a><time datetime="2022-06-21T06:38:38.000Z" title="发表于 2022-06-21 14:38:38">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题">无题</a><time datetime="2022-06-21T06:34:36.312Z" title="发表于 2022-06-21 14:34:36">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏"><img src="/img/bg/flappybird.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js的flapp bird游戏"/></a><div class="content"><a class="title" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏">js的flapp bird游戏</a><time datetime="2022-06-20T07:56:00.000Z" title="发表于 2022-06-20 15:56:00">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img src="/img/bg/lihongyi11.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现宝可梦分类以及对宝可梦数据分析"/></a><div class="content"><a class="title" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析">实现宝可梦分类以及对宝可梦数据分析</a><time datetime="2021-08-12T06:05:34.000Z" title="发表于 2021-08-12 14:05:34">2021-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现"><img src="/img/bg/cat.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.锅巴开始做游戏之打砖块实现"/></a><div class="content"><a class="title" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现">1.锅巴开始做游戏之打砖块实现</a><time datetime="2021-08-09T06:05:34.000Z" title="发表于 2021-08-09 14:05:34">2021-08-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 锅巴</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

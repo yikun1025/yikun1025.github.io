@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>deeplabv3训练结果 | 锅巴要写编译器</title><meta name="keywords" content="segnet,语义分割,deeplabv3,keras"><meta name="author" content="锅巴"><meta name="copyright" content="锅巴"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. deeplabv3DeepLabv是由谷歌研发的语义图像分割模型,  v3的主要变化如下：  使用了Multi-Grid 策略，即在模型后端多加几层不同 rate 的空洞卷积： 将 batch normalization 加入到 ASPP模块 ASPP能够有效的捕获多尺度信息  有关aspp，这是五个分支，然后通过不同膨胀卷积特征提取，然后堆叠并且整合特征。 本次训练用的是Nclasses">
+<meta property="og:type" content="article">
+<meta property="og:title" content="deeplabv3训练结果">
+<meta property="og:url" content="http://example.com/2021/07/20/deeplabv3%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C/index.html">
+<meta property="og:site_name" content="锅巴要写编译器">
+<meta property="og:description" content="1. deeplabv3DeepLabv是由谷歌研发的语义图像分割模型,  v3的主要变化如下：  使用了Multi-Grid 策略，即在模型后端多加几层不同 rate 的空洞卷积： 将 batch normalization 加入到 ASPP模块 ASPP能够有效的捕获多尺度信息  有关aspp，这是五个分支，然后通过不同膨胀卷积特征提取，然后堆叠并且整合特征。 本次训练用的是Nclasses">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/bg/deeplab.png">
+<meta property="article:published_time" content="2021-07-20T11:35:00.000Z">
+<meta property="article:modified_time" content="2022-06-21T07:47:51.751Z">
+<meta property="article:author" content="锅巴">
+<meta property="article:tag" content="segnet">
+<meta property="article:tag" content="语义分割">
+<meta property="article:tag" content="deeplabv3">
+<meta property="article:tag" content="keras">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/bg/deeplab.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/07/20/deeplabv3%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'deeplabv3训练结果',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-21 15:47:51'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/author_guoba.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/bg/deeplab.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">锅巴要写编译器</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">deeplabv3训练结果</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-20T11:35:00.000Z" title="发表于 2021-07-20 19:35:00">2021-07-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-06-21T07:47:51.751Z" title="更新于 2022-06-21 15:47:51">2022-06-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BB%BB%E5%8A%A1/">任务</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="deeplabv3训练结果"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h5 id="1-deeplabv3"><a href="#1-deeplabv3" class="headerlink" title="1. deeplabv3"></a>1. deeplabv3</h5><p>DeepLabv是由谷歌研发的语义图像分割模型,  v3的主要变化如下：</p>
+<ol>
+<li>使用了Multi-Grid 策略，即在模型后端多加几层不同 rate 的空洞卷积：</li>
+<li>将 batch normalization 加入到 ASPP模块</li>
+<li>ASPP能够有效的捕获多尺度信息</li>
+</ol>
+<p>有关aspp，这是五个分支，然后通过不同膨胀卷积特征提取，然后堆叠并且整合特征。</p>
+<p>本次训练用的是Nclasses &#x3D;2，模型骨架为mobilenet的参数，mobilenet适合小型的分割预测，对于多种物体在一张图的分割模型，适合nclasses &gt; 2,骨架选择xception.</p>
+<p>50次训练后效果还可以，需要明天继续调整参数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yikun1025/blogimages@main/deeplean/image-20210721144322053.3e44zr5dclo0.webp" alt="image-20210721144322053"></p>
+<h5 id="2-标签图对比"><a href="#2-标签图对比" class="headerlink" title="2. 标签图对比"></a>2. 标签图对比</h5><p><img src="https://cdn.jsdelivr.net/gh/yikun1025/blogimages@main/deeplean/image-20210721144409977.7a34rtkdpm80.webp" alt="image-20210721144409977"></p>
+<p>左图为segnet的标签预测图，右图为deeplabv3的标签预测图，可以看出deeplabv3的效果很明显优于segnet,对于轮廓的粗细度更加精确，断连的部分也是连接上了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yikun1025/blogimages@main/deeplean/image-20210721144356472.4vyzrgcft7g0.webp" alt="image-20210721144356472"><img src="https://cdn.jsdelivr.net/gh/yikun1025/blogimages@main/deeplean/image-20210721144352119.32y3ys3cpk20.webp" alt="image-20210721144352119"></p>
+<p>左图为项目的标签预测图，右图为deeplabv3的标签预测图，因为项目图有进行修改并且处理，因此肯定是项目图的指静脉效果更好，连接的更好，也没有小点.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yikun1025/blogimages@main/deeplean/image-20210721144334689.1899g0goqym8.webp" alt="image-20210721144334689"><img src="https://cdn.jsdelivr.net/gh/yikun1025/blogimages@main/deeplean/image-20210721144334689.1899g0goqym8.webp" alt="image-20210721144334689"></p>
+<p>最终验证集的val_acc达到了0.78，效果一般，可能需要再进行参数调整。</p>
+<h5 id="3-deeplabv3的train-loss-acc-val-acc图"><a href="#3-deeplabv3的train-loss-acc-val-acc图" class="headerlink" title="3. deeplabv3的train,loss,acc,val_acc图"></a>3. deeplabv3的train,loss,acc,val_acc图</h5><h5 id="4-deeplabv3的train训练25轮后的output"><a href="#4-deeplabv3的train训练25轮后的output" class="headerlink" title="4. deeplabv3的train训练25轮后的output"></a>4. deeplabv3的train训练25轮后的output</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[0.4326215719183286, 0.32819647043943406, 0.2906552429000537, 0.27313048268357915, 0.257322250554959, 0.2485936055580775, 0.22558255766828855, 0.21648377254605294, 0.20409626215696336, 0.20077851687868437, 0.18920121863484382, 0.16730001717805862, 0.1484980287651221, 0.13886230066418648, 0.12509861948589485, 0.11312484368681908, 0.10617984918256601, 0.10045421905815602, 0.0941343237956365, 0.08838099787632624, 0.08943186216056347, 0.08403249680995942, 0.08262405296166737, 0.0808349081625541, 0.07744947063426176, 0.07656553431103627, 0.07173504649351041, 0.07101196522514025, 0.06906658746302127, 0.06820937463392814, 0.06713716896871726, 0.06698052963862816, 0.06641608532518148, 0.06359306958814462, 0.06376560181379318, 0.0623266168559591, 0.0641883086413145, 0.06161947716027498, 0.06355244300017754]</span><br><span class="line">[4.0616319417953495, 1.183943474292755, 2.3115387558937073, 2.8657393932342528, 3.0354074954986574, 1.946236801147461, 1.2182376027107238, 0.7115081369876861, 1.212304711341858, 1.451013195514679, 1.378138792514801, 1.8502532362937927, 2.180905544757843, 2.4437543153762817, 2.163941812515259, 1.1873418748378755, 1.8535349130630494, 1.43236004114151, 2.0837748885154723, 1.5460508823394776, 1.2623905420303345, 1.4946002125740052, 0.9569666862487793, 0.9159704208374023, 1.3723973870277404, 1.1889789342880248, 0.9741742849349976, 1.1434678912162781, 0.6369089841842651, 1.9918548583984375, 1.3535398364067077, 1.6862668991088867, 2.3333637952804565, 2.3430821657180787, 1.991876232624054, 1.8902344107627869, 1.8282016038894653, 1.8204568147659301, 1.7553340435028075]</span><br><span class="line">[0.793441899617513, 0.8549221356709799, 0.8724470456441243, 0.8803432782491049, 0.8880141576131185, 0.8906522115071615, 0.9012289047241211, 0.9044830640157063, 0.9091008504231771, 0.9112299919128418, 0.9165944417317708, 0.9268577893575033, 0.9354225158691406, 0.9398213386535644, 0.9463907877604166, 0.9517076492309571, 0.9546644846598308, 0.9573826789855957, 0.960140323638916, 0.9625997543334961, 0.9621321360270182, 0.9645235379536946, 0.9650745391845703, 0.9656690915425619, 0.9672190348307291, 0.9676105817159016, 0.9697905858357747, 0.9700892448425293, 0.9709406534830729, 0.9711839358011881, 0.9717344284057617, 0.9717852274576823, 0.971986452738444, 0.973262882232666, 0.9731442133585612, 0.9738095919291179, 0.9729414621988932, 0.9740989685058594, 0.9732884089152019]</span><br><span class="line">[0.2609233856201172, 0.6673646926879883, 0.7727865219116211, 0.7727920532226562, 0.7727920532226562, 0.7727779388427735, 0.7727840423583985, 0.7730352401733398, 0.7706464767456055, 0.7728574752807618, 0.7730077743530274, 0.7727920532226562, 0.7727920532226562, 0.7727920532226562, 0.7727920532226562, 0.7703588485717774, 0.7727920532226562, 0.7736625671386719, 0.7727758407592773, 0.7733671188354492, 0.7747377395629883, 0.7727874755859375, 0.7983449935913086, 0.7951879501342773, 0.7755756378173828, 0.7867647171020508, 0.7778730392456055, 0.7734188079833985, 0.8260860443115234, 0.7730215072631836, 0.7880279541015625, 0.7789608001708984, 0.772807502746582, 0.7728038787841797, 0.7735385894775391, 0.7745307922363281, 0.7561117172241211, 0.7602884292602539, 0.7596216201782227]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="3-预处理遇到的问题"><a href="#3-预处理遇到的问题" class="headerlink" title="3. 预处理遇到的问题"></a>3. 预处理遇到的问题</h5><p>在使用keras训练deepabv3的时候，发现用opencv读取数据会报错，于是使用了pillow读取图片，转换灰度并且训练，这中间也遇到了一些问题。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">锅巴</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/07/20/deeplabv3%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C/">http://example.com/2021/07/20/deeplabv3%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">锅巴要写编译器</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/segnet/">segnet</a><a class="post-meta__tags" href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">语义分割</a><a class="post-meta__tags" href="/tags/deeplabv3/">deeplabv3</a><a class="post-meta__tags" href="/tags/keras/">keras</a></div><div class="post_share"><div class="social-share" data-image="/img/bg/deeplab.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/07/21/%E8%BF%AA%E4%BB%94%E7%9A%84java%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B1/"><img class="prev-cover" src="/img/bg/java2.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">迪仔的java学习教程</div></div></a></div><div class="next-post pull-right"><a href="/2021/07/19/segnet%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C%E5%8F%8A%E6%96%B0%E6%A8%A1%E5%9E%8B/"><img class="next-cover" src="/img/bg/segnet2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">segnet训练结果及新模型</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/07/16/segnet%E4%BB%BB%E5%8A%A1/" title="segnet任务"><img class="cover" src="/img/bg/segnet.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-16</div><div class="title">segnet任务</div></div></a></div><div><a href="/2021/07/19/segnet%E8%AE%AD%E7%BB%83%E7%BB%93%E6%9E%9C%E5%8F%8A%E6%96%B0%E6%A8%A1%E5%9E%8B/" title="segnet训练结果及新模型"><img class="cover" src="/img/bg/segnet2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-19</div><div class="title">segnet训练结果及新模型</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/author_guoba.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">锅巴</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/yikun1025" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jianfang1025@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">技术成神之路</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-deeplabv3"><span class="toc-number">1.</span> <span class="toc-text">1. deeplabv3</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%A0%87%E7%AD%BE%E5%9B%BE%E5%AF%B9%E6%AF%94"><span class="toc-number">2.</span> <span class="toc-text">2. 标签图对比</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-deeplabv3%E7%9A%84train-loss-acc-val-acc%E5%9B%BE"><span class="toc-number">3.</span> <span class="toc-text">3. deeplabv3的train,loss,acc,val_acc图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-deeplabv3%E7%9A%84train%E8%AE%AD%E7%BB%8325%E8%BD%AE%E5%90%8E%E7%9A%84output"><span class="toc-number">4.</span> <span class="toc-text">4. deeplabv3的train训练25轮后的output</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E9%A2%84%E5%A4%84%E7%90%86%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">3. 预处理遇到的问题</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏"><img src="/img/bg/dadanmu.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js实现的打弹幕游戏"/></a><div class="content"><a class="title" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏">js实现的打弹幕游戏</a><time datetime="2022-06-21T06:38:38.000Z" title="发表于 2022-06-21 14:38:38">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题">无题</a><time datetime="2022-06-21T06:34:36.312Z" title="发表于 2022-06-21 14:34:36">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏"><img src="/img/bg/flappybird.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js的flapp bird游戏"/></a><div class="content"><a class="title" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏">js的flapp bird游戏</a><time datetime="2022-06-20T07:56:00.000Z" title="发表于 2022-06-20 15:56:00">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img src="/img/bg/lihongyi11.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现宝可梦分类以及对宝可梦数据分析"/></a><div class="content"><a class="title" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析">实现宝可梦分类以及对宝可梦数据分析</a><time datetime="2021-08-12T06:05:34.000Z" title="发表于 2021-08-12 14:05:34">2021-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现"><img src="/img/bg/cat.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.锅巴开始做游戏之打砖块实现"/></a><div class="content"><a class="title" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现">1.锅巴开始做游戏之打砖块实现</a><time datetime="2021-08-09T06:05:34.000Z" title="发表于 2021-08-09 14:05:34">2021-08-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 锅巴</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

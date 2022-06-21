@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>4.机器学习任务攻略 | 锅巴要写编译器</title><meta name="keywords" content="深度学习,机器学习,李宏毅"><meta name="author" content="锅巴"><meta name="copyright" content="锅巴"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Framework of ML 对于机器学习，training data会包含x与$\hat{y}$​对应的。 几次作业都是一样的，作业2语音识别，作业3图像识别，作业4对话识别，只是x和$\hat{y}$不同。  Steps确定function，确定loss function，找到最小loss的参数 但是如何使模型更好呢? General Guide Model Bias如果你的function">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.机器学习任务攻略">
+<meta property="og:url" content="http://example.com/2021/08/03/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%BB%BB%E5%8A%A1%E6%94%BB%E7%95%A5/index.html">
+<meta property="og:site_name" content="锅巴要写编译器">
+<meta property="og:description" content="Framework of ML 对于机器学习，training data会包含x与$\hat{y}$​对应的。 几次作业都是一样的，作业2语音识别，作业3图像识别，作业4对话识别，只是x和$\hat{y}$不同。  Steps确定function，确定loss function，找到最小loss的参数 但是如何使模型更好呢? General Guide Model Bias如果你的function">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/bg/lihongyi4.png">
+<meta property="article:published_time" content="2021-08-03T10:10:23.000Z">
+<meta property="article:modified_time" content="2022-06-20T11:11:49.000Z">
+<meta property="article:author" content="锅巴">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="李宏毅">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/bg/lihongyi4.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/08/03/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%BB%BB%E5%8A%A1%E6%94%BB%E7%95%A5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '4.机器学习任务攻略',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-20 19:11:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/author_guoba.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/bg/lihongyi4.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">锅巴要写编译器</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">4.机器学习任务攻略</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-03T10:10:23.000Z" title="发表于 2021-08-03 18:10:23">2021-08-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-06-20T11:11:49.000Z" title="更新于 2022-06-20 19:11:49">2022-06-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="4.机器学习任务攻略"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="Framework-of-ML"><a href="#Framework-of-ML" class="headerlink" title="Framework of ML"></a>Framework of ML</h4><p> 对于机器学习，training data会包含x与$\hat{y}$​对应的。</p>
+<p>几次作业都是一样的，作业2语音识别，作业3图像识别，作业4对话识别，只是x和$\hat{y}$不同。</p>
+<p><img src="/4/image-20210803181656794.png"></p>
+<h5 id="Steps"><a href="#Steps" class="headerlink" title="Steps"></a>Steps</h5><p>确定function，确定loss function，找到最小loss的参数</p>
+<p>但是如何使模型更好呢?</p>
+<h4 id="General-Guide"><a href="#General-Guide" class="headerlink" title="General Guide"></a>General Guide</h4><p><img src="/4/image-20210803182408012.png"></p>
+<h4 id="Model-Bias"><a href="#Model-Bias" class="headerlink" title="Model Bias"></a>Model Bias</h4><p>如果你的function set设定的不好，也就是任何参数的function都不能使loss变小，那么就是function set的问题，解决方式就是重新设计一个function。</p>
+<p><img src="/4/image-20210803182716139.png"></p>
+<p>比如说对于youtube观看次数的预测，可以优化模型的方式有:</p>
+<ul>
+<li>从一天改为56天</li>
+<li>增加一些新的feature</li>
+<li></li>
+</ul>
+<h4 id="Optimization-Issue"><a href="#Optimization-Issue" class="headerlink" title="Optimization Issue"></a>Optimization Issue</h4><p>比如梯度下降会卡在local minimum的位置而找不到global minimum。</p>
+<p><img src="/4/image-20210803184156011.png"></p>
+<p>也就是说通过优化找不到参数低的function，为了能够让要找的function在这里，我们需要把model变大</p>
+<p>这两种都是有可能的，可是在训练的时候怎么样才能判断出是model bias的问题，还是optimization issue的问题？</p>
+<h5 id="Model-Bias-v-s-Optimization-Issue"><a href="#Model-Bias-v-s-Optimization-Issue" class="headerlink" title="Model Bias v.s. Optimization Issue"></a>Model Bias v.s. Optimization Issue</h5><p>model bias需要把model变小，而optimization issue需要把model变大。</p>
+<p>在2015年的paper中，有人用了56层和20层的模型去预测测试集上的错误率，结果发现56层的layer始终比20层高一些。当时大家都认为这是过拟合的问题</p>
+<p>但是实际上这个问题应该结合training data去看。</p>
+<p><img src="/4/image-20210803184820109.png"></p>
+<p>如果是model bias的问题，那么training data上56层理应应该和20层的error相差不大，因为56层的模型弹性应该更大。因此就可以推测出来optimization的问题</p>
+<h5 id="Optimization-Issue-Sovled-Ways"><a href="#Optimization-Issue-Sovled-Ways" class="headerlink" title="Optimization Issue Sovled Ways"></a>Optimization Issue Sovled Ways</h5><ul>
+<li>Gaining the insights from comparison</li>
+<li>Start from shallower networks(or other models), which are easier to optimize</li>
+<li>if deeper networks do not obtain smaller loss on training data, then there is optimization issue</li>
+</ul>
+<p>通过试一些浅的模型，然后再试较为复杂的模型看训练集上的error。如果没有编号，就是optimization issue</p>
+<h4 id="Overfitting"><a href="#Overfitting" class="headerlink" title="Overfitting"></a>Overfitting</h4><p>training小，testing大。有可能是过拟合。但是为什么呢</p>
+<p>对于一个一无是处的function，如果找到traning的x，那么就把training的y返回，否则就生成一个随机值。虽然这个function毫无用处，但是它可以做到在traning的error是0的</p>
+<p><img src="/4/image-20210803185751934.png"></p>
+<p>解决overfittting的方法比如是通过增加训练资料。但是如果资料有限的话，应该如何呢？</p>
+<h5 id="Data-augmentation"><a href="#Data-augmentation" class="headerlink" title="Data augmentation"></a>Data augmentation</h5><p>自己增加训练资料,比如通过左右翻转,让资料实际上增加两倍.但是要根据资料特性来增加,比如上下翻转就不是很合适.</p>
+<p>对于model的理解取决于这个问题的理解.</p>
+<h5 id="Constrianed-model"><a href="#Constrianed-model" class="headerlink" title="Constrianed model"></a>Constrianed model</h5><p><img src="/4/image-20210804215342796.png"></p>
+<p>更少的参数，共享参数</p>
+<p>比如通过<code>fully-connected</code>找到的模型相对于cnn是比较小的。cnn的模型弹性不够高，但是正因为在医学影像中的限制较大，反而效果会比较好。</p>
+<p>其他一些限制模型的方式有以下这些:</p>
+<ul>
+<li>Less parameters, sharing parameters</li>
+<li>Less features</li>
+<li>Early stopping</li>
+<li>Reugularization</li>
+<li>Dropout</li>
+</ul>
+<p>但是模型的限制也不应该太大，比如我们设定的模型是直线，但是目前的线是三个点，那么怎么找这个模型都无法同时通过三个点。这就是model bias的问题。</p>
+<p><img src="/4/image-20210804215835028.png"></p>
+<p><img src="/4/image-20210804220234478.png"></p>
+<p>最好的模型就是既不复杂的也不太简单的。</p>
+<p>假设我们参加kaggle，我们有好几个模型，我们测试在public测试集上查看最小的loss，有可能在public测试集上随机的结果导致结果好，让我们误以为模型很好，但是实际上在真正的private测试集上效果会很差。kaggle的改分看的是public和private一起。</p>
+<h4 id="Cross-Validation"><a href="#Cross-Validation" class="headerlink" title="Cross Validation"></a>Cross Validation</h4><p>交叉验证可以避免这种在测试集上的模型随机问题，因为是把训练集的一部分当做验证集去做的，因此这种方式找到的model经得起验证。</p>
+<h4 id="n-fold-validation"><a href="#n-fold-validation" class="headerlink" title="n fold validation"></a>n fold validation</h4><p><img src="/4/image-20210804223028797.png"></p>
+<p>通过把model的training分为三份，分别做三次的loss，平均最小的mse就是最好的model，这个方式也是为了获得更好的模型，减少验证集的影响。</p>
+<h4 id="mismatch"><a href="#mismatch" class="headerlink" title="mismatch"></a>mismatch</h4><p><img src="/4/image-20210804223826966.png"></p>
+<p>mismatch就是对测试集的数据分布差距过大的问题。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">锅巴</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/03/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%BB%BB%E5%8A%A1%E6%94%BB%E7%95%A5/">http://example.com/2021/08/03/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%BB%BB%E5%8A%A1%E6%94%BB%E7%95%A5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">锅巴要写编译器</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a><a class="post-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><a class="post-meta__tags" href="/tags/%E6%9D%8E%E5%AE%8F%E6%AF%85/">李宏毅</a></div><div class="post_share"><div class="social-share" data-image="/img/bg/lihongyi4.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/04/5.4/"><img class="prev-cover" src="/img/bg/lihongyi5.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">5. 类神经网络训练(local minima and saddle point)</div></div></a></div><div class="next-post pull-right"><a href="/2021/07/31/3.%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/"><img class="next-cover" src="/img/bg/ai3.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">3. 反向传播</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/07/14/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8A)/" title="1.深度学习机器学习基本概念(上)"><img class="cover" src="/img/bg/1.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-14</div><div class="title">1.深度学习机器学习基本概念(上)</div></div></a></div><div><a href="/2021/07/18/1.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5(%E4%B8%8B)/" title="1.深度学习机器学习基本概念(下)"><img class="cover" src="/img/bg/ai1.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-18</div><div class="title">1.深度学习机器学习基本概念(下)</div></div></a></div><div><a href="/2021/08/08/10.%20Classification/" title="10.Classification"><img class="cover" src="/img/bg/lihongyi11.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-08</div><div class="title">10.Classification</div></div></a></div><div><a href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img class="cover" src="/img/bg/lihongyi11.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-12</div><div class="title">实现宝可梦分类以及对宝可梦数据分析</div></div></a></div><div><a href="/2021/07/25/2.%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AE%80%E4%BB%8B/" title="2.深度学习简介"><img class="cover" src="/img/bg/ai2.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-25</div><div class="title">2.深度学习简介</div></div></a></div><div><a href="/2021/07/31/3.%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/" title="3. 反向传播"><img class="cover" src="/img/bg/ai3.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-31</div><div class="title">3. 反向传播</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/author_guoba.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">锅巴</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/yikun1025" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jianfang1025@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">技术成神之路</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Framework-of-ML"><span class="toc-number">1.</span> <span class="toc-text">Framework of ML</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Steps"><span class="toc-number">1.1.</span> <span class="toc-text">Steps</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#General-Guide"><span class="toc-number">2.</span> <span class="toc-text">General Guide</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Model-Bias"><span class="toc-number">3.</span> <span class="toc-text">Model Bias</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Optimization-Issue"><span class="toc-number">4.</span> <span class="toc-text">Optimization Issue</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Model-Bias-v-s-Optimization-Issue"><span class="toc-number">4.1.</span> <span class="toc-text">Model Bias v.s. Optimization Issue</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Optimization-Issue-Sovled-Ways"><span class="toc-number">4.2.</span> <span class="toc-text">Optimization Issue Sovled Ways</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Overfitting"><span class="toc-number">5.</span> <span class="toc-text">Overfitting</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Data-augmentation"><span class="toc-number">5.1.</span> <span class="toc-text">Data augmentation</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Constrianed-model"><span class="toc-number">5.2.</span> <span class="toc-text">Constrianed model</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cross-Validation"><span class="toc-number">6.</span> <span class="toc-text">Cross Validation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#n-fold-validation"><span class="toc-number">7.</span> <span class="toc-text">n fold validation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mismatch"><span class="toc-number">8.</span> <span class="toc-text">mismatch</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏"><img src="/img/bg/dadanmu.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js实现的打弹幕游戏"/></a><div class="content"><a class="title" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏">js实现的打弹幕游戏</a><time datetime="2022-06-21T06:38:38.000Z" title="发表于 2022-06-21 14:38:38">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题">无题</a><time datetime="2022-06-21T06:34:36.312Z" title="发表于 2022-06-21 14:34:36">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏"><img src="/img/bg/flappybird.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js的flapp bird游戏"/></a><div class="content"><a class="title" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏">js的flapp bird游戏</a><time datetime="2022-06-20T07:56:00.000Z" title="发表于 2022-06-20 15:56:00">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img src="/img/bg/lihongyi11.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现宝可梦分类以及对宝可梦数据分析"/></a><div class="content"><a class="title" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析">实现宝可梦分类以及对宝可梦数据分析</a><time datetime="2021-08-12T06:05:34.000Z" title="发表于 2021-08-12 14:05:34">2021-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现"><img src="/img/bg/cat.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.锅巴开始做游戏之打砖块实现"/></a><div class="content"><a class="title" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现">1.锅巴开始做游戏之打砖块实现</a><time datetime="2021-08-09T06:05:34.000Z" title="发表于 2021-08-09 14:05:34">2021-08-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 锅巴</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

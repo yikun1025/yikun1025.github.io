@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>锅巴要写编译器</title><meta name="author" content="锅巴"><meta name="copyright" content="锅巴"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="锅巴要写编译器">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="锅巴要写编译器">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/author_guoba.png">
+<meta property="article:author" content="锅巴">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/author_guoba.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '锅巴要写编译器',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-06-21 16:34:28'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/author_guoba.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://w.wallhaven.cc/full/72/wallhaven-721k2y.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">锅巴要写编译器</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">锅巴要写编译器</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/yikun1025" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jianfang1025@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/08/8.lihongyi/" title="8. what does the error from?"><img class="post_bg" src="/img/bg/lihongyi10.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="8. what does the error from?"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/08/8.lihongyi/" title="8. what does the error from?">8. what does the error from?</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-08T02:27:55.000Z" title="发表于 2021-08-08 10:27:55">2021-08-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">where does the error from?
+
+error到底是因为bias还是因为variance呢
+Estimator对于我们要找的关于pokemon的cp值的预测，这个function我们并不知道真实值，对于我们的模型与真实的偏离就是类似于靶子上的偏离。
+
+
+Bias and Variance of Estimator假设我们做实验期望的值为$\mu$，那么每次实验后偏差的值就是$m_{n}$，那么将所有实验后获得的偏差0值累加后除以N就应该是m的值。
+那么偏差散多开就是由variance决定的。
+当数量N比较多的情况下，散布会比较集中。而数量N比较小的时候，散布会比较开。
+
+
+比较的公式如图所示，注意比较用的是biased estimator，而$s^2$普遍小于$\sigma^2$
+Low High variance and bias
+
+靶子不偏移，也就是靶子能够距离红中心位置越近越好，这就代表的是bias。
+一连串的靶子的点分布集中，这就代表的是variance，也就是分布要低。
+Parallel Universes假设我们现在处于不同平行宇宙，每个宇宙我们都抓10 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/07/7.%E5%9B%9E%E5%BD%92%E6%A1%88%E4%BE%8Bpokemon/" title="7.回归案例pokemon"><img class="post_bg" src="/img/bg/lihongyi9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="7.回归案例pokemon"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/07/7.%E5%9B%9E%E5%BD%92%E6%A1%88%E4%BE%8Bpokemon/" title="7.回归案例pokemon">7.回归案例pokemon</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-07T08:12:33.000Z" title="发表于 2021-08-07 16:12:33">2021-08-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">pokemon开始啦，来做一个基于对pokemon进化后cp的值的回归预测
+
+estimating the combat power of a pokeom after evolution
+
+
+体重，身高，血量，种族，目前的cpp都是input，也可以说是特征，$x_{w},x_{h},x_{hp}，x_{cp},x_{xhp}$
+step 1: Model找一个function set，假设我们猜测的是线性方程，那么就是$y &#x3D; b + w * X_{cp} $
+
+step 2:  Goodness of Function之后就是收集各种pokemon的资料，可以收集记录当一个pokemon进化时的资料，以及进化后的cp变化值，进化后的值就是正确的标签，设定为$\hat y$
+假设目前有10只pokemon，我们画图标记坐标，绘制图如下所示：
+
+可以看到有一些值特别高，这个特别高的值就是伊布，因为伊布比较稀有，他的数值各方面都非常高。
+对于如何定义为不好的function，那么就是对于标签值即真实值和函数的预测值的差距特别大，因此loss可以写成estimation err ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/07/6.lihongyi/" title="6.new optimizers for Deep Learning"><img class="post_bg" src="/img/bg/lihongyi8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="6.new optimizers for Deep Learning"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/07/6.lihongyi/" title="6.new optimizers for Deep Learning">6.new optimizers for Deep Learning</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-07T02:49:55.000Z" title="发表于 2021-08-07 10:49:55">2021-08-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">
+what is optimization about?其实就是找参数能让loss最小，也就是y接近$\hat{y}$
+按照理论上来说，我们每次看到的数据以及处理的只有一部分的loss，那么如何确定这个loss是基于整个surface area的呢？
+on-line vs off-lineon line的方式是一次只看到一部分的input，off-line是一次性看到全部的input。虽然实际上训练的时候是基于batch的，也就是为了训练更快不可能看到全部资料。
+但目前我们的讨论是不考虑实际情况，是在任何点都能拿到全部的input来考虑的
+
+
+sgd
+sgd的方法是基于gradient的方向来决定的。
+sgdm引入了momentum，方向基于gradient和之前所有的time step累加，共同决定方向。
+
+原因是上节课说过的，在saddle point的时候为0，可是因为累加了之前的step，因此可以爬出来慢慢继续。
+
+
+Adagrad解决了在不同的地方使用不同的learning rate，平坦地方的learning rate比较大，陡峭地方的learning rate比较小。
+
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/06/5.5/" title="5. 类神经网络训练(loss and batch Normalization)"><img class="post_bg" src="/img/bg/lihongyi7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5. 类神经网络训练(loss and batch Normalization)"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/06/5.5/" title="5. 类神经网络训练(loss and batch Normalization)">5. 类神经网络训练(loss and batch Normalization)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-06T09:03:34.000Z" title="发表于 2021-08-06 17:03:34">2021-08-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">Classification as Regression?
+在分类问题中，可以根据输出来定义分类，但是这个分类属于人为定义的，因此不一定完全准确。
+class as one-hot vectorone-hot 就是对于给定的class标1，其余为0的方式。
+假设我们目前要分类的是只有3个class，那么可以得知输出的向量是包含三个数字的，确定了output是什么形式，就需要修改神经网络，因为原本输出的是一个scalar，只有一个数值。
+
+我们可以对activation的值加上不同的w和b就可以得到三个值
+除此之外，分类问题还需要再计算一次softmax，来计算y跟$yhat$​​​的距离。
+soft-max的方式就是归一化，把输出的值改为0或者1。
+soft-max
+公式就是如图所示，假设$y_{1}$,$y_{2}$,$y_{3}$的值为3,1,-3,那么都除以e，e的值是2.7$$e^3 &#x3D; 20 \quad e^1 &#x3D; 2.7 \quad e^-3 &#x3D; 0.05 \\sum(e^3+e^1+e^-3)&#x3D;22.75 \y_{1}^{‘} &# ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/06/linux%E5%B0%8F%E6%8A%80%E5%B7%A7/" title="linux小技巧"><img class="post_bg" src="/img/bg/linux.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="linux小技巧"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/06/linux%E5%B0%8F%E6%8A%80%E5%B7%A7/" title="linux小技巧">linux小技巧</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-06T07:36:20.000Z" title="发表于 2021-08-06 15:36:20">2021-08-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/linux/">linux</a></span></div><div class="content">向日葵连接断开解决123sudo ap-get updatesudo ap-get upgradesudo apt-get install lightdm 选择lightdm
+
+选择完之后重启，并且记得把设置里的共享全部打开
+
+解压.001, .002, .003文件技巧以TableBank数据集为例，下载了TableBank.zip.001,002,003,004，因此需要先将文件夹整合为一个zip
+12cat TableBank.zip* &gt;  TableBank.zipunzip TableBank.zip
+查询本机ip123456[root@myzdl ~]# curl  cip.ccIP	: 223.17.42.12地址	: 中国  北京运营商	: 电信数据二	: 北京市 | 联通
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/05/ocr%E8%BD%ACexcel%E4%BB%BB%E5%8A%A1%E5%88%9D%E6%AD%A5/" title="表格识别转excel"><img class="post_bg" src="/img/bg/ocr2.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="表格识别转excel"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/05/ocr%E8%BD%ACexcel%E4%BB%BB%E5%8A%A1%E5%88%9D%E6%AD%A5/" title="表格识别转excel">表格识别转excel</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-05T10:56:00.000Z" title="发表于 2021-08-05 18:56:00">2021-08-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BB%BB%E5%8A%A1/">任务</a></span></div><div class="content">关于目前任务目前还在通过paddle给的预训练模型训练，目标检测模型目前精度仍然较低，只有百分之40的精度，原因不明。
+关于邹九遗留的代码过于复杂看不太明白，很难自己尝试优化，目前通过的是根据PubLayNet数据集训练的表格场景的文字检测来获得目前数据，再判断是否是同一行，同一列文字，最后返回数据，目前精度不高，需要继续训练
+
+难点在于目标返回的坐标的列的点预测会有一些错误，在第四个坐标的时候会突然变大，并不符合一行的坐标，但是如果用opencv的方式计算很慢，效果也不会很好，导致这个列的坐标在列的判断中是有一些困难的。
+因此之后几天想多使用英文的表格数据集，来提高表格的识别概率。
+
+
+opencv的话就是通过膨胀方式然后做位运算找交集的点，这个方法不太适配所有表格的交叉点。
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/05/5.3/" title="5.类神经网络训练(Learning Rate)"><img class="post_bg" src="/img/bg/lihongyi6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5.类神经网络训练(Learning Rate)"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/05/5.3/" title="5.类神经网络训练(Learning Rate)">5.类神经网络训练(Learning Rate)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-05T00:10:23.000Z" title="发表于 2021-08-05 08:10:23">2021-08-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">Training stuck not equal Small Gradient
+People believe training stuck because the parameters are around a critical point
+
+但是并不一定是因为以及在saddle point，有一种可能是震荡在如图所示的峡谷，导致无法下降。
+
+Training can be difficult even without critical pointslearning rate也就是步长如果比这个峡谷距离大，那么就会一直震荡停留在附近，但是如果真的设置非常小的learning rate，是可以慢慢减少，但是同时这也太慢了。
+
+图上可看出来当learning rate为$10^-7$的时候，更新起来是极其慢的，一点点变化就需要100,000updates, 因此我们需要优化我们的算法。
+也就是说不同的参数性格分配不同的learning rate
+Different parameters needs different learning rate如何自我改变learning rate的大小让 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/05/5.%E7%B1%BB%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83(batch-and-momentum)/" title="5. 类神经网络训练(batch and momentum)"><img class="post_bg" src="/img/bg/batch.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5. 类神经网络训练(batch and momentum)"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/05/5.%E7%B1%BB%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%AE%AD%E7%BB%83(batch-and-momentum)/" title="5. 类神经网络训练(batch and momentum)">5. 类神经网络训练(batch and momentum)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-05T00:10:23.000Z" title="发表于 2021-08-05 08:10:23">2021-08-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">Batch每次会把训练资料分成几份不同的batch，然后对于每一个batch做gradient，更新参数，然后不断重复。所有的batch做完就是一次epoch
+对于每一次epoch都会打乱batch，都会重新分配epoch的方式，被称为shuffle。
+Smal Batch vs Large Batch假设我们有20个example，不分batch和分batch查询loss的图为以下
+一种是看完所有的example再决定参数，这组方式时间长，但是比较powerful。另一种是只要看完一个example就更新一次参数，因此会比较noisy，花费的时间也较短。
+实际上改为small batch和large batch的时间没有多大区别，因为平行运算可以平行处理不同数据。
+
+Parallel Computing对于batch size增加所花的时间有人做了实验，测试就是mnist手写数据测试，如下图所示，batch size在1000以前，batch size设定并不会导致时间增长，只有batch size增长到1000后时间才迅速增长
+
+
+smaller batch requires lo ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2021/08/04/5.4/" title="5. 类神经网络训练(local minima and saddle point)"><img class="post_bg" src="/img/bg/lihongyi5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5. 类神经网络训练(local minima and saddle point)"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/04/5.4/" title="5. 类神经网络训练(local minima and saddle point)">5. 类神经网络训练(local minima and saddle point)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-04T15:10:23.000Z" title="发表于 2021-08-04 23:10:23">2021-08-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">Optimization Fails becasue.当你如何训练lpss都无法降低的话，应该如何解决呢
+有一种猜想是，loss的微分为0
+
+除了local minima导致gradient是0外，saddle point也会gradient为0
+local minima的话基本没有办法解决，但是如果是saddle point的话还是可以继续训练的。
+
+Tayler Series Approximation对于判断是saddle还是local的问题，需要用微积分的知识去判断。
+
+这就是泰勒展开式，g是gradient，是衡量$l(\theta)$和$l(\theta’)$的差距。 H是海塞矩阵。
+如果绿色的方框式子为0就代表走到了critical point，代表梯度为0，因此可以被近似为只有$l(\theta’)$+红色的式子，而通过hessian可以判断是local min, local max或者saddle point。
+Hessian
+对于$\theta-\theta’$可以写成v代替，那么式子可以简化为$v^THv$，如果这大于0，就说明$l(\theta)$ &gt; $ ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2021/08/03/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%BB%BB%E5%8A%A1%E6%94%BB%E7%95%A5/" title="4.机器学习任务攻略"><img class="post_bg" src="/img/bg/lihongyi4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4.机器学习任务攻略"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/08/03/4.%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%BB%BB%E5%8A%A1%E6%94%BB%E7%95%A5/" title="4.机器学习任务攻略">4.机器学习任务攻略</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-08-03T10:10:23.000Z" title="发表于 2021-08-03 18:10:23">2021-08-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">深度学习笔记</a></span></div><div class="content">Framework of ML 对于机器学习，training data会包含x与$\hat{y}$​对应的。
+几次作业都是一样的，作业2语音识别，作业3图像识别，作业4对话识别，只是x和$\hat{y}$不同。
+
+Steps确定function，确定loss function，找到最小loss的参数
+但是如何使模型更好呢?
+General Guide
+Model Bias如果你的function set设定的不好，也就是任何参数的function都不能使loss变小，那么就是function set的问题，解决方式就是重新设计一个function。
+
+比如说对于youtube观看次数的预测，可以优化模型的方式有:
+
+从一天改为56天
+增加一些新的feature
+
+
+Optimization Issue比如梯度下降会卡在local minimum的位置而找不到global minimum。
+
+也就是说通过优化找不到参数低的function，为了能够让要找的function在这里，我们需要把model变大
+这两种都是有可能的，可是在训练的时候怎么样才能判断出是model bias的问题， ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="page-number" href="/page/4/#content-inner">4</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/author_guoba.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">锅巴</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">35</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/yikun1025" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:jianfang1025@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">技术成神之路</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏"><img src="/img/bg/dadanmu.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js实现的打弹幕游戏"/></a><div class="content"><a class="title" href="/2022/06/21/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F2/" title="js实现的打弹幕游戏">js实现的打弹幕游戏</a><time datetime="2022-06-21T06:38:38.000Z" title="发表于 2022-06-21 14:38:38">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2022/06/21/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" title="无题">无题</a><time datetime="2022-06-21T06:34:36.312Z" title="发表于 2022-06-21 14:34:36">2022-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏"><img src="/img/bg/flappybird.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="js的flapp bird游戏"/></a><div class="content"><a class="title" href="/2022/06/20/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F3/" title="js的flapp bird游戏">js的flapp bird游戏</a><time datetime="2022-06-20T07:56:00.000Z" title="发表于 2022-06-20 15:56:00">2022-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析"><img src="/img/bg/lihongyi11.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="实现宝可梦分类以及对宝可梦数据分析"/></a><div class="content"><a class="title" href="/2021/08/12/10.%20Classification%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" title="实现宝可梦分类以及对宝可梦数据分析">实现宝可梦分类以及对宝可梦数据分析</a><time datetime="2021-08-12T06:05:34.000Z" title="发表于 2021-08-12 14:05:34">2021-08-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现"><img src="/img/bg/cat.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.锅巴开始做游戏之打砖块实现"/></a><div class="content"><a class="title" href="/2021/08/09/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F1/" title="1.锅巴开始做游戏之打砖块实现">1.锅巴开始做游戏之打砖块实现</a><time datetime="2021-08-09T06:05:34.000Z" title="发表于 2021-08-09 14:05:34">2021-08-09</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/linux/"><span class="card-category-list-name">linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BB%BB%E5%8A%A1/"><span class="card-category-list-name">任务</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">深度学习笔记</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">游戏开发</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2/"><span class="card-category-list-name">西方哲学史</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BF%AA%E4%BB%94/"><span class="card-category-list-name">迪仔</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BF%AA%E4%BB%94%E7%9A%84java%E5%AD%A6%E4%B9%A0%E6%95%99%E7%A8%8B/"><span class="card-category-list-name">迪仔的java学习教程</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%94%85%E5%B7%B4%E5%81%9A%E6%B8%B8%E6%88%8F/"><span class="card-category-list-name">锅巴做游戏</span><span class="card-category-list-count">2</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/caffee/" style="font-size: 1.1em; color: #999">caffee</a> <a href="/tags/cuda/" style="font-size: 1.17em; color: #999c9f">cuda</a> <a href="/tags/cudnn/" style="font-size: 1.17em; color: #999c9f">cudnn</a> <a href="/tags/deeplabv3/" style="font-size: 1.1em; color: #999">deeplabv3</a> <a href="/tags/java/" style="font-size: 1.1em; color: #999">java</a> <a href="/tags/javascript/" style="font-size: 1.17em; color: #999c9f">javascript</a> <a href="/tags/js/" style="font-size: 1.1em; color: #999">js</a> <a href="/tags/keras/" style="font-size: 1.23em; color: #999ea6">keras</a> <a href="/tags/linux/" style="font-size: 1.1em; color: #999">linux</a> <a href="/tags/nvidia/" style="font-size: 1.1em; color: #999">nvidia</a> <a href="/tags/ocr/" style="font-size: 1.43em; color: #99a6b9">ocr</a> <a href="/tags/opencv/" style="font-size: 1.37em; color: #99a4b2">opencv</a> <a href="/tags/segnet/" style="font-size: 1.23em; color: #999ea6">segnet</a> <a href="/tags/%E4%BB%B2%E5%A4%8F%E5%A4%9C%E4%B9%8B%E6%A2%A6/" style="font-size: 1.17em; color: #999c9f">仲夏夜之梦</a> <a href="/tags/%E5%9B%BE%E5%83%8F%E9%99%8D%E5%99%AA/" style="font-size: 1.1em; color: #999">图像降噪</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.5em; color: #99a9bf">机器学习</a> <a href="/tags/%E6%9D%8E%E5%AE%8F%E6%AF%85/" style="font-size: 1.5em; color: #99a9bf">李宏毅</a> <a href="/tags/%E6%B3%B0%E5%8B%92%E6%96%AF/" style="font-size: 1.1em; color: #999">泰勒斯</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.5em; color: #99a9bf">深度学习</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 1.23em; color: #999ea6">游戏开发</a> <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/" style="font-size: 1.1em; color: #999">目标检测</a> <a href="/tags/%E8%A1%A8%E6%A0%BC%E8%AF%86%E5%88%AB/" style="font-size: 1.1em; color: #999">表格识别</a> <a href="/tags/%E8%A5%BF%E6%96%B9%E5%93%B2%E5%AD%A6%E5%8F%B2/" style="font-size: 1.1em; color: #999">西方哲学史</a> <a href="/tags/%E8%AF%9D%E5%89%A7/" style="font-size: 1.17em; color: #999c9f">话剧</a> <a href="/tags/%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" style="font-size: 1.23em; color: #999ea6">语义分割</a> <a href="/tags/%E8%B0%83%E7%A0%94/" style="font-size: 1.3em; color: #99a1ac">调研</a> <a href="/tags/%E8%BF%AA%E4%BB%94/" style="font-size: 1.23em; color: #999ea6">迪仔</a> <a href="/tags/%E8%BF%AA%E4%BB%94%E7%9A%84%E6%8A%80%E6%9C%AF%E7%BE%8E%E6%9C%AF%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/" style="font-size: 1.1em; color: #999">迪仔的技术美术成长之路</a> <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 1.17em; color: #999c9f">面向对象</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/08/"><span class="card-archive-list-date">八月 2021</span><span class="card-archive-list-count">15</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">17</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">35</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-06-21T08:34:28.234Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 锅巴</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["持续进步，持续代码"],
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '持续进步，持续代码'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
